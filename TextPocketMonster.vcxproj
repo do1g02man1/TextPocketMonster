@@ -123,15 +123,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BossBattle.cpp" />
+    <ClCompile Include="CaptureSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="PickPokemon.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Pokeball.cpp" />
+    <ClCompile Include="Pokemon.cpp" />
+    <ClCompile Include="Postion.cpp" />
     <ClCompile Include="PrintScreen.cpp" />
+    <ClCompile Include="Shop.cpp" />
     <ClCompile Include="TextPocketMonster.cpp" />
+    <ClCompile Include="WildBattle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BossBattle.h" />
+    <ClInclude Include="CaptureSystem.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="PickPokemon.h" />
+    <ClInclude Include="IBattle.h" />
+    <ClInclude Include="ICapture.h" />
+    <ClInclude Include="IItem.h" />
+    <ClInclude Include="IScreen.h" />
+    <ClInclude Include="ISkill.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Pokeball.h" />
+    <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="Postion.h" />
     <ClInclude Include="PrintScreen.h" />
+    <ClInclude Include="Shop.h" />
+    <ClInclude Include="WildBattle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

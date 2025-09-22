@@ -9,15 +9,29 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="출력">
       <UniqueIdentifier>{b0e4309b-a98a-4353-81a0-cf32aa73eac8}</UniqueIdentifier>
     </Filter>
     <Filter Include="게임매니저">
       <UniqueIdentifier>{e9a887fd-d947-4ead-baa6-8c8c9bdf659f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="인터페이스">
+      <UniqueIdentifier>{e9e04a83-362d-4edc-90c7-15d8017dcb15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="전투">
+      <UniqueIdentifier>{245dc7a7-d430-4b5f-8be6-d561e47a2d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="포켓몬">
+      <UniqueIdentifier>{c2ad9a2d-4bae-451a-b43d-23ca26aa121c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="포획">
+      <UniqueIdentifier>{a3b244e6-890c-417b-9543-a1d417730cfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="아이템">
+      <UniqueIdentifier>{e304a007-fa02-4506-a350-5089d8dbcbdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="플레이어">
+      <UniqueIdentifier>{d0fd22fd-5185-41fe-8594-1d5d4229cb69}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,8 +44,32 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>게임매니저</Filter>
     </ClCompile>
-    <ClCompile Include="PickPokemon.cpp">
+    <ClCompile Include="WildBattle.cpp">
+      <Filter>전투</Filter>
+    </ClCompile>
+    <ClCompile Include="BossBattle.cpp">
+      <Filter>전투</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokemon.cpp">
+      <Filter>포켓몬</Filter>
+    </ClCompile>
+    <ClCompile Include="CaptureSystem.cpp">
+      <Filter>포획</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
       <Filter>출력</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokeball.cpp">
+      <Filter>아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="Postion.cpp">
+      <Filter>아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>플레이어</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,8 +79,47 @@
     <ClInclude Include="GameManager.h">
       <Filter>게임매니저</Filter>
     </ClInclude>
-    <ClInclude Include="PickPokemon.h">
+    <ClInclude Include="IScreen.h">
+      <Filter>인터페이스</Filter>
+    </ClInclude>
+    <ClInclude Include="ISkill.h">
+      <Filter>인터페이스</Filter>
+    </ClInclude>
+    <ClInclude Include="IBattle.h">
+      <Filter>인터페이스</Filter>
+    </ClInclude>
+    <ClInclude Include="ICapture.h">
+      <Filter>인터페이스</Filter>
+    </ClInclude>
+    <ClInclude Include="IItem.h">
+      <Filter>인터페이스</Filter>
+    </ClInclude>
+    <ClInclude Include="WildBattle.h">
+      <Filter>전투</Filter>
+    </ClInclude>
+    <ClInclude Include="BossBattle.h">
+      <Filter>전투</Filter>
+    </ClInclude>
+    <ClInclude Include="Pokemon.h">
+      <Filter>포켓몬</Filter>
+    </ClInclude>
+    <ClInclude Include="CaptureSystem.h">
+      <Filter>포획</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
       <Filter>출력</Filter>
+    </ClInclude>
+    <ClInclude Include="Pokeball.h">
+      <Filter>아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="Postion.h">
+      <Filter>아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>플레이어</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

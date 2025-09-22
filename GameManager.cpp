@@ -1,17 +1,30 @@
 #include <iostream>
 #include <conio.h>
+#include "Windows.h"
 #include "PrintScreen.h"
 #include "GameManager.h"
 
 void GameManager::Start()
 {
-    PrintScreen print;
+    if (Run())
+    {
+        Screen.ShowProfessorIntro();
+    }
+    else
+    {
+        return;
+    }
+}
+
+bool GameManager::Run()
+{
     const int Up = 72; // À§
     const int Down = 80; // ¾Æ·¡
+    bool MenuCount = false;
     char UserInput;
 
     system("mode con: cols=100 lines=30");
-    PrintLogoTop();
+    Screen.ShowLogoTop();
     while (true)
     {
         if (_kbhit())
@@ -23,18 +36,22 @@ void GameManager::Start()
             switch (UserInput)
             {
             case Up:
-                PrintLogoTop();
+                Screen.ShowLogoTop();
+                MenuCount = true;
                 break;
             case Down:
-                PrintLogoBottom();
+                Screen.ShowLogoBottom();
+                MenuCount = false;
                 break;
             case 'z':
             case 'Z':
-                GameStart();
+                return MenuCount;
                 break;
             default:
                 break;
             }
         }
     }
+
+    return false;
 }

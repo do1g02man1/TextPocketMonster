@@ -4,7 +4,7 @@
 #include <string>
 #include <conio.h>
 
-void PrintScreen::PrintLogoTop() const
+void PrintScreen::ShowLogoTop() const
 {
     system("CLS");
     printf("\n\n\n\n\n\n");
@@ -21,7 +21,7 @@ void PrintScreen::PrintLogoTop() const
     printf("\t\t\t\t  Z를 누르면 선택합니다.");
 }
 
-void PrintScreen::PrintLogoBottom() const
+void PrintScreen::ShowLogoBottom() const
 {
     system("CLS");
     printf("\n\n\n\n\n\n");
@@ -38,7 +38,7 @@ void PrintScreen::PrintLogoBottom() const
     printf("\t\t\t\t  Z를 누르면 선택합니다.");
 }
 
-void PrintScreen::GameStart() const
+void PrintScreen::ShowProfessorIntro()
 {
     system("mode con: cols=120 lines=40");
     system("CLS");
