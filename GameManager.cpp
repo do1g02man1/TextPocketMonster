@@ -8,7 +8,7 @@ void GameManager::Start()
     PrintScreen print;
     const int Up = 72; // 위
     const int Down = 80; // 아래
-    char str;
+    char UserInput;
 
     system("mode con: cols=100 lines=30");
     PrintLogoTop();
@@ -16,11 +16,11 @@ void GameManager::Start()
     {
         if (_kbhit())
         {
-            str = _getch();
-            if (str == -32)     // 2바이트 특수 문자로 입력되면
-                str = _getch();
+            UserInput = _getch();
+            if (UserInput == -32)     // 2바이트 특수 문자로 입력되면
+                UserInput = _getch();
 
-            switch (str)
+            switch (UserInput)
             {
             case Up:
                 PrintLogoTop();
