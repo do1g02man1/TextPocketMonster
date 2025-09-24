@@ -154,6 +154,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Pokeball.h" />
     <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="Position.h" />
     <ClInclude Include="Postion.h" />
     <ClInclude Include="PrintScreen.h" />
     <ClInclude Include="Shop.h" />

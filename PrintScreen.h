@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Map.h"
 
 class PrintScreen
 {
@@ -14,14 +15,12 @@ public:
     void ShowPokemonSelection2(const Player& PlayerInstance) const; 
     void ShowPokemonSelection3(const Player& PlayerInstance) const; // 스타터 선택 UI
     void ShowAfterSelect(const Player& PlayerInstance) const;       // 스타터 선택 후
+    void ShowMap(const Map& MapData) const;                                                 // 맵 출력
     void ShowBattleScreen();                                        // 전투 화면
-    void ShowMap();                                                 // 맵 출력
     void ShowEnding();                                              // 엔딩 출력
     
     // 화면 삭제
     void ClearScreen() const { system("CLS"); }
-
-    void TestMap();
 
 private:
 };

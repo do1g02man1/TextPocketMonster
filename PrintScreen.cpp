@@ -76,7 +76,7 @@ void PrintScreen::ShowScriptSleep(std::string ScriptDoctor, int ScriptLen) const
 void PrintScreen::ShowProfessorIntro(const Player& PlayerInstance) const
 {
     std::string PlayerName = PlayerInstance.GetPlayerName();
-    std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" 이로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
+    std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" (이)로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
         "[오박사]\n허허, 하지만 모험에는 항상 든든한 동료가 필요하지.\n자네의 첫 번째 포켓몬을 고를 시간이 왔네.\n\n(오박사가 책상 위의 세 개의 몬스터볼을 가리킨다.)\n\n[오박사]\n"
         "여기 세 마리의 포켓몬이 있네.\n자네와 함께할 수 있는 친구들이지.\n\n1. 불꽃숭이 - 꼬마원숭이포켓몬\n\n2. 팽도리 - 펭귄포켓몬\n\n3. 모부기 - 어린잎포켓몬\n\n[오박사]\n자, 어떤 포켓몬을 선택하겠나?\n"
         "(방향키로 이동, Z 키로 선택)";
@@ -88,7 +88,7 @@ void PrintScreen::ShowProfessorIntro(const Player& PlayerInstance) const
 void PrintScreen::ShowPokemonSelection1(const Player& PlayerInstance) const
 {
     std::string PlayerName = PlayerInstance.GetPlayerName();
-    std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" 이로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
+    std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" (이)로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
         "[오박사]\n허허, 하지만 모험에는 항상 든든한 동료가 필요하지.\n자네의 첫 번째 포켓몬을 고를 시간이 왔네.\n\n(오박사가 책상 위의 세 개의 몬스터볼을 가리킨다.)\n\n[오박사]\n"
         "여기 세 마리의 포켓몬이 있네.\n자네와 함께할 수 있는 친구들이지.\n\n☞ 1. 불꽃숭이 - 꼬마원숭이포켓몬\n\n2. 팽도리 - 펭귄포켓몬\n\n3. 모부기 - 어린잎포켓몬\n\n[오박사]\n자, 어떤 포켓몬을 선택하겠나?\n"
         "(방향키로 이동, Z 키로 선택)";
@@ -100,7 +100,7 @@ void PrintScreen::ShowPokemonSelection1(const Player& PlayerInstance) const
 void PrintScreen::ShowPokemonSelection2(const Player& PlayerInstance) const
 {
     std::string PlayerName = PlayerInstance.GetPlayerName();
-    std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" 이로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
+    std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" (이)로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
         "[오박사]\n허허, 하지만 모험에는 항상 든든한 동료가 필요하지.\n자네의 첫 번째 포켓몬을 고를 시간이 왔네.\n\n(오박사가 책상 위의 세 개의 몬스터볼을 가리킨다.)\n\n[오박사]\n"
         "여기 세 마리의 포켓몬이 있네.\n자네와 함께할 수 있는 친구들이지.\n\n1. 불꽃숭이 - 꼬마원숭이포켓몬\n\n☞ 2. 팽도리 - 펭귄포켓몬\n\n3. 모부기 - 어린잎포켓몬\n\n[오박사]\n자, 어떤 포켓몬을 선택하겠나?\n"
         "(방향키로 이동, Z 키로 선택)";
@@ -112,7 +112,7 @@ void PrintScreen::ShowPokemonSelection2(const Player& PlayerInstance) const
 void PrintScreen::ShowPokemonSelection3(const Player& PlayerInstance) const
 {
     std::string PlayerName = PlayerInstance.GetPlayerName();
-    std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" 이로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
+    std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" (이)로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
         "[오박사]\n허허, 하지만 모험에는 항상 든든한 동료가 필요하지.\n자네의 첫 번째 포켓몬을 고를 시간이 왔네.\n\n(오박사가 책상 위의 세 개의 몬스터볼을 가리킨다.)\n\n[오박사]\n"
         "여기 세 마리의 포켓몬이 있네.\n자네와 함께할 수 있는 친구들이지.\n\n1. 불꽃숭이 - 꼬마원숭이포켓몬\n\n2. 팽도리 - 펭귄포켓몬\n\n☞ 3. 모부기 - 어린잎포켓몬\n\n[오박사]\n자, 어떤 포켓몬을 선택하겠나?\n"
         "(방향키로 이동, Z 키로 선택)";
@@ -132,24 +132,14 @@ void PrintScreen::ShowAfterSelect(const Player& PlayerInstance) const
     ShowScriptSleep(ScriptDoctor, ScriptLen);
 }
 
-void PrintScreen::TestMap()
+void PrintScreen::ShowMap(const Map& MapData) const
 {
-    char Map[7][21] = {
-    "####################",
-    "#........N.........#",
-    "#.................S#",
-    "#........P.........#",
-    "#~~~~~~~....~~~~~~~#",
-    "#~~~~~~~....~~~~~~~#",
-    "####################"
-    };
-
     ClearScreen();
-    for (int i = 0; i < 7; i++)
+    for (int x = 0; x < MapData.GetHeight(); x++)
     {
-        for (int j = 0; j < 21; j++)
+        for (int y = 0; y < MapData.GetWidth(); y++)
         {
-            printf("%c", Map[i][j]);
+            printf("%c", MapData.GetTile(x, y));
         }
         printf("\n");
     }

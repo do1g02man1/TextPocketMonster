@@ -9,15 +9,16 @@
 
 void GameManager::Run()
 {
-    Screen.ShowPlayerName();
+    ScreenInstance.ShowPlayerName();
     std::string InPlayerName;
     std::cin >> InPlayerName;
     PlayerInstance.SetPlayerName(InPlayerName);
 
-    Screen.ShowProfessorIntro(PlayerInstance);
+    ScreenInstance.ShowProfessorIntro(PlayerInstance);
     Select();
-    Screen.ShowAfterSelect(PlayerInstance);
-    Screen.TestMap();
+    ScreenInstance.ShowAfterSelect(PlayerInstance);
+    ScreenInstance.ShowMap(MapInstance);
+    
 }
 
 void GameManager::Start()
@@ -34,13 +35,11 @@ void GameManager::Start()
 
 bool GameManager::IsStart()
 {
-    const int Up = 72; // 위
-    const int Down = 80; // 아래
     bool IsStartCheck = true;
     char UserInput;
 
     system("mode con: cols=100 lines=30");
-    Screen.ShowLogoTop();
+    ScreenInstance.ShowLogoTop();
     while (true)
     {
         if (_kbhit())
@@ -51,12 +50,12 @@ bool GameManager::IsStart()
 
             switch (UserInput)
             {
-            case Up:
-                Screen.ShowLogoTop();
+            case ArrowUp:
+                ScreenInstance.ShowLogoTop();
                 IsStartCheck = true;
                 break;
-            case Down:
-                Screen.ShowLogoBottom();
+            case ArrowDown:
+                ScreenInstance.ShowLogoBottom();
                 IsStartCheck = false;
                 break;
             case 'z':
@@ -104,12 +103,10 @@ void GameManager::Select()
 
 int GameManager::StartPokemonSelect()
 {
-    const int Up = 72; // 위
-    const int Down = 80; // 아래
     int SelectCount = 0;
     char UserInput;
 
-    Screen.ShowPokemonSelection1(PlayerInstance);
+    ScreenInstance.ShowPokemonSelection1(PlayerInstance);
 
     while (true)
     {
@@ -121,10 +118,10 @@ int GameManager::StartPokemonSelect()
 
             switch (UserInput)
             {
-            case Up:
+            case ArrowUp:
                 if (SelectCount != Top) SelectCount--;
                 break;
-            case Down:
+            case ArrowDown:
                 if (SelectCount != Bottom) SelectCount++;
                 break;
             case 'z':
@@ -138,13 +135,13 @@ int GameManager::StartPokemonSelect()
             switch (SelectCount)
             {
             case Top:
-                Screen.ShowPokemonSelection1(PlayerInstance);
+                ScreenInstance.ShowPokemonSelection1(PlayerInstance);
                 break;
             case Middle:
-                Screen.ShowPokemonSelection2(PlayerInstance);
+                ScreenInstance.ShowPokemonSelection2(PlayerInstance);
                 break;
             case Bottom:
-                Screen.ShowPokemonSelection3(PlayerInstance);
+                ScreenInstance.ShowPokemonSelection3(PlayerInstance);
                 break;
             default:
                 break;

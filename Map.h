@@ -1,25 +1,24 @@
 #pragma once
 
-enum class Tile 
-{ 
-    Wall, 
-    Path, 
-    Grass, 
-    NPC, 
-    Player 
-};
-
 class Map {
 public:
-    Map(int width = WIDTH, int height = HEIGHT);
+    Map() = default;
     void Generate();
-    Tile GetTile(int x, int y) const;
-    void SetTile(int x, int y, Tile tile);
+    char GetTile(int x, int y) const { return Grid[y][x]; }
+    int GetWidth() const { return Width; }
+    int GetHeight() const { return Height; }
     
 private:
-    static const int WIDTH = 40;
-    static const int HEIGHT = 20;
-    Tile grid[HEIGHT][WIDTH];
-
+    static const int Width = 20;
+    static const int Height = 20;
+    char Grid[Height][Width] = {
+    "###################",
+    "#...........MMMM..#",
+    "#..MMM........MM..#",
+    "#..MMM............#",
+    "#~~~~~............#",
+    "#~~~~~...........O#",
+    "###################"
+    };
 };
 

@@ -142,5 +142,8 @@
     <ClInclude Include="Turtwig.h">
       <Filter>포켓몬\플레이어블</Filter>
     </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>플레이어</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
