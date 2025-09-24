@@ -10,8 +10,8 @@ enum class PokemonType {
 
 enum class PokemonRole {
     Attack,
-    Defense,
-    Speed
+    Balance,
+    Defense
 };
 
 class ISkill {

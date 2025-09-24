@@ -3,10 +3,13 @@
 #include <string>
 #include <memory>
 
+
 class Pokemon 
 {
 public:
-    Pokemon(std::string name, PokemonType type, PokemonRole role, int level);
+    Pokemon() = default;
+    Pokemon(std::string InName, PokemonType InType, PokemonRole InRole, int InLevel)
+        : Name(InName), Type(InType), Role(InRole), Level(InLevel) {}
 
     // 전투 관련
     void LearnSkill(std::shared_ptr<ISkill> skill);
@@ -19,15 +22,15 @@ public:
     void LevelUp();
 
     // Getter
-    std::string GetName() const;
+    std::string GetName() const { return Name; }
     int GetHP() const;
-    int GetLevel() const;
+    int GetLevel() const { return Level; }
 
 protected:
-    std::string name;
-    PokemonType type;
-    PokemonRole role;
-    int level;
+    std::string Name;
+    PokemonType Type;
+    PokemonRole Role;
+    int Level;
     int hp, attack, defense, speed;
     static const int MAX_SKILLS = 4;
     std::shared_ptr<ISkill> skills[MAX_SKILLS];
