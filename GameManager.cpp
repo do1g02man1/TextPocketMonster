@@ -17,8 +17,28 @@ void GameManager::Run()
     ScreenInstance.ShowProfessorIntro(PlayerInstance);
     Select();
     ScreenInstance.ShowAfterSelect(PlayerInstance);
-    ScreenInstance.ShowMap(MapInstance);
-    
+  
+	PlayerInstance.FindStartPosition(PlayerInstance.GetCurrentPosition(), MapData);
+    ScreenInstance.ShowMap(MapData, PlayerInstance.GetCurrentPosition());
+    MapData.SetTile(17, 5, '.');
+
+    while (true)
+    {
+        if (_kbhit())
+        {
+            char UserInput = _getch();
+            if (UserInput == -32) UserInput = _getch();
+
+            int MoveFlags = PlayerInstance.AvailableMoves(PlayerInstance.GetCurrentPosition(), MapData);
+            MoveDirection Direction = PlayerInstance.GetMoveInput(MoveFlags, UserInput);
+
+            if (Direction != DirNone)
+                PlayerInstance.Move(Direction);
+
+		    ScreenInstance.ShowMap(MapData, PlayerInstance.GetCurrentPosition());
+        }
+        Sleep(10);
+    }
 }
 
 void GameManager::Start()
@@ -85,15 +105,15 @@ void GameManager::Select()
     case Middle:
     {
         // Pokemon 클래스에 팽도리 전달
-        Piplup piplup;                        // 팽도리 생성
-        PlayerInstance.AddPokemon(piplup);    // 플레이어 팀에 추가
+        Piplup piplup;                          // 팽도리 생성
+        PlayerInstance.AddPokemon(piplup);      // 플레이어 팀에 추가
         break;
     }
     case Bottom:
     {
         // Pokemon 클래스에 모부기 전달
-        Turtwig turtwig;                       // 모부기 생성
-        PlayerInstance.AddPokemon(turtwig);    // 플레이어 팀에 추가
+        Turtwig turtwig;                         // 모부기 생성
+        PlayerInstance.AddPokemon(turtwig);      // 플레이어 팀에 추가
         break;
     }
     default:
@@ -147,7 +167,5 @@ int GameManager::StartPokemonSelect()
                 break;
             }
         }
-
-
     }
 }

@@ -10,6 +10,7 @@ enum Tile
     Wall = '#',
     Path = '.',
     Grass = 'M',
+    River = '~',
     Start = 'O'
 };
 
@@ -22,7 +23,7 @@ enum MoveDirection
     DirRight = 1 << 3
 };
 
-enum Direction
+enum PlayerDirection
 {
     ArrowUp = 72,    // 상
     ArrowDown = 80,  // 하
@@ -48,20 +49,23 @@ public:
     int GetGold() const;
 
     // 이동 관련
-    int PrintAvailableMoves(Position& position);    // 이동한 곳 구조물 체크
-    MoveDirection GetMoveInput(int MoveFlags);      // 방향키 입력
-    bool IsWall(int x, int y);                      // 벽인지 체크
-    void FindStartPosition(Position& OutPosition);  // 시작 지점 체크 
+    void Move(MoveDirection InDirection);
+    int AvailableMoves(const Position& InPosition, const Map& MapData);    // 이동한 곳 구조물 체크
+    MoveDirection GetMoveInput(int InMoveFlags, char InUserInput);      // 방향키 입력
+    bool IsBlocked(int x, int y, const Map& MapData);                    // 벽인지 체크
+    void FindStartPosition(Position& OutPosition, const Map& MapData);  // 시작 지점 체크 
 
 
     // Getter 
     std::string GetPlayerName() const { return PlayerName; }
     std::string GetStartPokemonName() const { return Team[0].GetName(); }
+    Position& GetCurrentPosition() { return CurrentPosition; }
 
     // Setter
     void SetPlayerName(const std::string& InPlayerName) { PlayerName = InPlayerName; }
 
 private:
+    Position CurrentPosition = Position(0, 0);
     std::string PlayerName;
     int Gold;
     static const int MAX_TEAM = 6;
@@ -70,5 +74,4 @@ private:
     int TeamCount = 0;
     std::shared_ptr<IItem> Inventory[MAX_INVENTORY];
     int InventoryCount = 0;
-    Map MapData;
 };

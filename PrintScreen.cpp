@@ -4,7 +4,6 @@
 #include <conio.h>
 #include <iostream>
 #include "PrintScreen.h"
-#include "Player.h"
 
 void PrintScreen::ShowLogoTop() const
 {
@@ -69,7 +68,7 @@ void PrintScreen::ShowScriptSleep(std::string ScriptDoctor, int ScriptLen) const
     for (int i = 0; i < ScriptLen; i++)
     {
         printf("%c", ScriptDoctor[i]);
-        Sleep(10);
+        //Sleep(10);
     }
 }
 
@@ -130,16 +129,20 @@ void PrintScreen::ShowAfterSelect(const Player& PlayerInstance) const
 
     int ScriptLen = ScriptDoctor.length();
     ShowScriptSleep(ScriptDoctor, ScriptLen);
+	Sleep(1000);
 }
 
-void PrintScreen::ShowMap(const Map& MapData) const
+void PrintScreen::ShowMap(const Map& MapData, const Position& PlayerPosition) const
 {
     ClearScreen();
-    for (int x = 0; x < MapData.GetHeight(); x++)
+    for (int y = 0; y < MapData.GetHeight(); y++)
     {
-        for (int y = 0; y < MapData.GetWidth(); y++)
+        for (int x = 0; x < MapData.GetWidth(); x++)
         {
-            printf("%c", MapData.GetTile(x, y));
+            if (x == PlayerPosition.x && y == PlayerPosition.y)
+                printf("O");  // 플레이어
+            else
+                printf("%c", MapData.GetTile(x, y));
         }
         printf("\n");
     }

@@ -7,16 +7,17 @@ void Player::AddPokemon(const Pokemon& PokemonToAdd)
 	TeamCount++;
 }
 
-void Player::FindStartPosition(Position& OutPosition)
+void Player::FindStartPosition(Position& OutPosition, const Map& MapData)
 {
-	for (int x = 0; x < MapData.GetHeight(); x++)
+	for (int y = 0; y < MapData.GetHeight(); y++)
 	{
-		for (int y = 0; y < MapData.GetWidth(); y++)
+		for (int x = 0; x < MapData.GetWidth(); x++)
 		{
-			if (MapData.GetTile(y, x) == Start)
+			if (MapData.GetTile(x, y) == Start)
 			{
 				OutPosition.x = x;
 				OutPosition.y = y;
+				
 				return;
 			}
 		}
@@ -25,72 +26,65 @@ void Player::FindStartPosition(Position& OutPosition)
 	OutPosition.y = 0;
 }
 
-int Player::PrintAvailableMoves(Position& position)
+void Player::Move(MoveDirection InDirection)
+{
+	switch (InDirection)
+	{
+	case DirUp:	   CurrentPosition.y--; break;
+	case DirDown:  CurrentPosition.y++; break;
+	case DirLeft:  CurrentPosition.x--; break;
+	case DirRight: CurrentPosition.x++; break;
+	case DirNone:
+	default:
+		break;
+	}
+}
+
+int Player::AvailableMoves(const Position& InPosition, const Map& MapData)
 {
 	int MoveFlags = DirNone;
 
-	if (!IsWall(position.x, position.y - 1))
-	{
-		MoveFlags |= DirUp;
-	}
-	if (!IsWall(position.x, position.y + 1))
-	{
-		MoveFlags |= DirDown;
-	}
-	if (!IsWall(position.x - 1, position.y))
-	{
-		MoveFlags |= DirLeft;
-	}
-	if (!IsWall(position.x + 1, position.y))
-	{
-		MoveFlags |= DirRight;
-	}
+	if (!IsBlocked(InPosition.x, InPosition.y - 1, MapData)) MoveFlags |= DirUp;
+	if (!IsBlocked(InPosition.x, InPosition.y + 1, MapData)) MoveFlags |= DirDown;
+	if (!IsBlocked(InPosition.x - 1, InPosition.y, MapData)) MoveFlags |= DirLeft;
+	if (!IsBlocked(InPosition.x + 1, InPosition.y, MapData)) MoveFlags |= DirRight;
 
 	return MoveFlags;
 }
 
-MoveDirection Player::GetMoveInput(int MoveFlags)
+MoveDirection Player::GetMoveInput(int InMoveFlags, char InUserInput)
 {
-	char UserInput = 0;
 	MoveDirection Direction = DirNone;
 
-	while (true)
+	switch (InUserInput)
 	{
-		if (_kbhit())
-		{
-			UserInput = _getch();
-			if (UserInput == -32)     // 2바이트 특수 문자로 입력되면
-				UserInput = _getch();
-			
-			switch (UserInput)
-			{
-			case ArrowUp:
-				if (MoveFlags & DirUp) Direction = DirUp;
-				break;
-			case ArrowDown:
-				if (MoveFlags & DirDown) Direction = DirDown;
-				break;
-			case ArrowLeft:
-				if (MoveFlags & DirLeft) Direction = DirLeft;
-				break;
-			case ArrowRight:
-				if (MoveFlags & DirRight) Direction = DirRight;
-				break;
-			default:
-				break;
-			}
-		}
+	case ArrowUp:
+		if (InMoveFlags & DirUp) Direction = DirUp;
+		break;
+	case ArrowDown:
+		if (InMoveFlags & DirDown) Direction = DirDown;
+		break;
+	case ArrowLeft:
+		if (InMoveFlags & DirLeft) Direction = DirLeft;
+		break;
+	case ArrowRight:
+		if (InMoveFlags & DirRight) Direction = DirRight;
+		break;
+	default:
+		break;
 	}
 
 	return Direction;
 }
 
-bool Player::IsWall(int x, int y)
+bool Player::IsBlocked(int x, int y, const Map& MapData)
 {
-	bool IsWallCheck = false;
-	if (y < 0 || y >= MapData.GetWidth() ||
-		x < 0 || x >= MapData.GetHeight() ||
-		MapData.GetTile(y, x) == Wall)
-		IsWallCheck = true;
-	return IsWallCheck;
+	if (x < 0 || x >= MapData.GetWidth() ||
+		y < 0 || y >= MapData.GetHeight())
+		return true;
+
+	if (MapData.GetTile(x, y) == Wall || MapData.GetTile(x, y) == River)
+		return true;
+
+	return false;
 }

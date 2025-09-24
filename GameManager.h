@@ -11,12 +11,12 @@ enum Floor
     Bottom
 };
 
-enum Direction
+enum GameManager_Direction
 {
-    ArrowUp = 72,    // 상
-    ArrowDown = 80,  // 하
-    ArrowLeft = 75,  // 좌
-    ArrowRight = 77  // 우
+    Up = 72,    // 상
+    Down = 80,  // 하
+    Left = 75,  // 좌
+    Right = 77  // 우
 };
 
 class GameManager
@@ -25,7 +25,6 @@ public:
     GameManager() = default;
 
     void Run();     // 메인 루프
-    void PlayerMove();
 
     void Start();   // 게임 시작
     bool IsStart(); // 시작 체크
@@ -36,6 +35,6 @@ public:
 private:
     Player PlayerInstance;
     PrintScreen ScreenInstance;
-    Map MapInstance;
+    Map MapData;
 };
 
