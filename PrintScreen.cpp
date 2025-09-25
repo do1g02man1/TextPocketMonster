@@ -8,7 +8,7 @@
 void PrintScreen::ShowLogoTop() const
 {
     system("CLS");
-    printf("\n\n\n\n\n\n■");
+    printf("\n\n\n\n\n\n");
     printf("\t   _______________________________________________________________________\n");
     printf("\t       ____        __      _    _    _____     _   _       __      _     _\n");
     printf("\t       /    )    /    )    /  ,'     /    '    /  /|     /    )    /|   / \n");
@@ -142,14 +142,17 @@ void PrintScreen::ShowMap(const Map& MapData, const Position& PlayerPosition) co
     }
 }
 
-void PrintScreen::ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon) const
+void PrintScreen::ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon, std::string InStatus) const
 {
     const int HPBarTicks = 10;
     char PlayerHPBar[HPBarTicks + 1]{ "-" };
     char EnemyHPBar[HPBarTicks + 1]{ "-" };
     // CurrentHP / (MaxHP / 10) 
-    int PlayerHPRate = PlayerPokemon.GetCurrentHP() / (PlayerPokemon.GetMaxHP() / HPBarTicks);
-    int EnemyHPRate = EnemyPokemon.GetCurrentHP() / (EnemyPokemon.GetMaxHP() / HPBarTicks);
+    int PlayerHPRate = (PlayerPokemon.GetCurrentHP() * HPBarTicks) / PlayerPokemon.GetMaxHP();
+    int EnemyHPRate = (EnemyPokemon.GetCurrentHP() * HPBarTicks) / EnemyPokemon.GetMaxHP();
+
+    if (EnemyHPRate > HPBarTicks) EnemyHPRate = HPBarTicks;
+    if (PlayerHPRate > HPBarTicks) PlayerHPRate = HPBarTicks;
 
     for (int i = 0; i < PlayerHPRate; i++)
     {
@@ -176,7 +179,7 @@ void PrintScreen::ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& 
     printf(" 자신 [%s]\tLv.%d\n", PlayerPokemon.GetName().c_str(), PlayerPokemon.GetLevel());
     printf(" HP: [%s] %d / %d\n", PlayerHPBar, PlayerPokemon.GetCurrentHP(), PlayerPokemon.GetMaxHP());
     printf(" ────────────────────────────────────────\n");
-    printf(" 메시지 : 상대가 공격했다.\n"); // 상황에 맞는 대사 입력
+    printf(" %s\n", InStatus.c_str()); // 상황에 맞는 대사 입력
     printf(" ────────────────────────────────────────\n");
 }
 

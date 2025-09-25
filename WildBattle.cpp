@@ -49,9 +49,11 @@ void WildBattle::StartBattle(Pokemon& PlayerPokemon, Pokemon& EnemyPokemon)
     // - 상대 포켓몬 정보: 이름, 레벨, HP
     // - HP는 현재 HP 비율에 따라 체력바 표시
     // - 선택 가능한 행동 버튼 표시 (공격, 아이템, 도망 등)
-    ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon);
+    ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "앗! 야생의 " + EnemyPokemon.GetName() + "(이)가 나타났다!");
     ScreenInstance.ShowBattleScreen(SelectCount);
-
+    Sleep(1000);
+    ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 무엇을 할까?");
+    ScreenInstance.ShowBattleScreen(SelectCount);
     while (PlayerPokemon.GetCurrentHP() > 0
         && EnemyPokemon.GetCurrentHP() > 0)
     {
@@ -77,6 +79,7 @@ void WildBattle::StartBattle(Pokemon& PlayerPokemon, Pokemon& EnemyPokemon)
                     {
                     case Attack:
                         BattleAttack(PlayerPokemon, EnemyPokemon);
+                        !(IsFast);
                         break;
                     case Item:
                     case Pocketmon:
@@ -87,12 +90,20 @@ void WildBattle::StartBattle(Pokemon& PlayerPokemon, Pokemon& EnemyPokemon)
                 default:
                     break;
                 }
-                ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon);
+                ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 무엇을 할까?");
                 ScreenInstance.ShowBattleScreen(SelectCount);
             }
         }
         else
         {
+            ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "상대 " + EnemyPokemon.GetName() + "(이)가 공격했다!");
+            ScreenInstance.ShowBattleScreen(SelectCount);
+			Sleep(1000);
+			int Damage = EnemyPokemon.GetAttack();
+			PlayerPokemon.TakeDamage(Damage);
+			ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "은(는) " + std::to_string(Damage) + "의 데미지를 입었다!");
+			ScreenInstance.ShowBattleScreen(SelectCount);
+			Sleep(1000);
             !(IsFast);
         }
     }
@@ -102,8 +113,9 @@ void WildBattle::BattleAttack(Pokemon& PlayerPokemon, Pokemon& EnemyPokemon)
 {
     int SelectCount = 0;
     char UserInput;
+    std::string Script;
 
-    ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon);
+    ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 무엇을 할까?");
     ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
 
     while (true)
@@ -117,21 +129,56 @@ void WildBattle::BattleAttack(Pokemon& PlayerPokemon, Pokemon& EnemyPokemon)
             switch (UserInput)
             {
             case ArrowUp:
-                if (SelectCount != Attack) 
+                if (SelectCount != 0) 
                     SelectCount--;
                 break;
             case ArrowDown:
                 if (SelectCount < PlayerPokemon.GetSkillCount() - 1)
-                    if (SelectCount != Run) 
+                    if (SelectCount != 3) 
                         SelectCount++;
                 break;
             case 'z':
             case 'Z':
-                break;
+            {
+                auto Skill = PlayerPokemon.GetSkill(SelectCount);
+                if (Skill != nullptr)
+                {
+                    // 간단한 데미지 계산 (공격력 + 스킬 위력)
+                    int Damage = PlayerPokemon.GetAttack() + Skill->GetPower();
+
+                    ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "의 " + Skill->GetName() + " 공격!");
+                    ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
+					Sleep(1000);
+                    // 정확도 체크 (랜덤으로 명중 여부 판단)
+                    int RandValue = rand() % 100;
+                    if (RandValue < Skill->GetAccuracy())
+                    {
+                        EnemyPokemon.TakeDamage(Damage);
+                        ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, EnemyPokemon.GetName() + "에게 " + std::to_string(Damage) + "의 데미지를 입혔다!");
+                        ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
+                    }
+                    else
+                    {
+                        ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "그러나 " + PlayerPokemon.GetName() + "의 " + Skill->GetName() + "는 빗나갔다!");
+                        ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
+                    }
+                    Sleep(1000);
+                }
+            
+                // 적 포켓몬이 쓰러졌는지 체크
+                if (EnemyPokemon.IsFainted())
+                {
+                    ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, EnemyPokemon.GetName() + "은(는) 쓰러졌다!");
+                    ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
+                    Sleep(1000);
+                    return; // 전투 종료
+                }
+                return;
+            }
             default:
                 break;
             }
-            ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon);
+            ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 무엇을 할까?");
             ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
         }
     }

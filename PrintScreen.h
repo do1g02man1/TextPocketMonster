@@ -32,7 +32,7 @@ public:
     void ShowMap(const Map& MapData, const Position& PlayerPosition) const;
 
     // 전투 화면
-    void ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon) const;
+    void ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon, std::string InStatus) const;
     void ShowBattleScreen(int Index) const;
     void ShowBattleScreenAttack(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon, int Index) const;
 

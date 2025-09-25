@@ -34,6 +34,25 @@ std::vector<PokemonData> AllPokemonData = {
         {39, 52, 43, 65}, 16, "¸®ÀÚ¸ù", false, true}
 };
 
+void Pokemon::LearnSkill(std::shared_ptr<ISkill> InSkill, int Index)
+{
+    if (Index >= 0 && Index < MaxSkills)
+    {
+        Skills[Index] = InSkill;
+    }
+}
+
+void Pokemon::TakeDamage(int InAmount)
+{
+    CurrentHP -= InAmount;
+	if (CurrentHP < 0) CurrentHP = 0;
+}
+
+bool Pokemon::IsFainted() const
+{
+	return CurrentHP <= 0;
+}
+
 void Pokemon::AssignDefaultSkills(const PokemonData& Data)
 {
     SkillCount = 0;
@@ -46,4 +65,13 @@ void Pokemon::AssignDefaultSkills(const PokemonData& Data)
 
     for (int i = SkillCount; i < MaxSkills; i++)
         Skills[i] = nullptr;
+}
+
+std::shared_ptr<ISkill> Pokemon::GetSkill(int Index) const
+{
+    if (Index >= 0 && Index < MaxSkills)
+    {
+        return Skills[Index];
+    }
+    return nullptr;
 }

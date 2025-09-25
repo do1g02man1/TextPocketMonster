@@ -38,9 +38,9 @@ public:
     }
 
     // 전투 관련
-    void LearnSkill(std::shared_ptr<ISkill> skill);
-    void UseSkill(int index, Pokemon& target);
-    void TakeDamage(int amount);
+    void LearnSkill(std::shared_ptr<ISkill> Skill, int Index);
+    void UseSkill(int Index, Pokemon& Target);
+    void TakeDamage(int InAmount);
     bool IsFainted() const;
 
     // 성장 관련
@@ -49,7 +49,9 @@ public:
     void LevelUp();
 
     // Getter
+    std::shared_ptr<ISkill> GetSkill(int Index) const;
     std::string GetName() const { return Name; }
+    int GetAttack() const { return Attack; }
     int GetCurrentHP() const { return CurrentHP; }
     int GetMaxHP() const { return MaxHP; }
     int GetLevel() const { return Level; }
@@ -57,7 +59,6 @@ public:
     int GetSkillCount() const { return SkillCount; }
     std::string GetSkillName(int Index) const { return Skills[Index]->GetName(); }
     
-
 private:
     std::string Name;
     PokemonType Type;
