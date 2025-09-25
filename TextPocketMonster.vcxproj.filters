@@ -33,9 +33,6 @@
     <Filter Include="플레이어">
       <UniqueIdentifier>{d0fd22fd-5185-41fe-8594-1d5d4229cb69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="포켓몬\플레이어블">
-      <UniqueIdentifier>{a21f09fe-f7a8-419c-a362-44efc9671293}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TextPocketMonster.cpp">
@@ -74,14 +71,8 @@
     <ClCompile Include="Player.cpp">
       <Filter>플레이어</Filter>
     </ClCompile>
-    <ClCompile Include="Turtwig.cpp">
-      <Filter>포켓몬\플레이어블</Filter>
-    </ClCompile>
-    <ClCompile Include="Piplup.cpp">
-      <Filter>포켓몬\플레이어블</Filter>
-    </ClCompile>
-    <ClCompile Include="Chimchar.cpp">
-      <Filter>포켓몬\플레이어블</Filter>
+    <ClCompile Include="Skill.cpp">
+      <Filter>포켓몬</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,17 +124,11 @@
     <ClInclude Include="Player.h">
       <Filter>플레이어</Filter>
     </ClInclude>
-    <ClInclude Include="Chimchar.h">
-      <Filter>포켓몬\플레이어블</Filter>
-    </ClInclude>
-    <ClInclude Include="Piplup.h">
-      <Filter>포켓몬\플레이어블</Filter>
-    </ClInclude>
-    <ClInclude Include="Turtwig.h">
-      <Filter>포켓몬\플레이어블</Filter>
-    </ClInclude>
     <ClInclude Include="Position.h">
       <Filter>플레이어</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>포켓몬</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

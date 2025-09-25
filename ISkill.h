@@ -2,9 +2,11 @@
 #include <string>
 
 enum class PokemonType {
+    Normal,
     Fire,
     Water,
     Grass,
+    Electric,
     Chaos
 };
 

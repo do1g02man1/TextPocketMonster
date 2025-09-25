@@ -17,7 +17,7 @@ void Player::FindStartPosition(Position& OutPosition, const Map& MapData)
 			{
 				OutPosition.x = x;
 				OutPosition.y = y;
-				
+
 				return;
 			}
 		}
@@ -26,8 +26,10 @@ void Player::FindStartPosition(Position& OutPosition, const Map& MapData)
 	OutPosition.y = 0;
 }
 
-void Player::Move(MoveDirection InDirection)
+bool Player::Move(MoveDirection InDirection, const Map& MapData)
 {
+	const int EncounterRate = 5;
+	int RandomEncounter = rand() % EncounterRate;
 	switch (InDirection)
 	{
 	case DirUp:	   CurrentPosition.y--; break;
@@ -38,6 +40,12 @@ void Player::Move(MoveDirection InDirection)
 	default:
 		break;
 	}
+	
+	if (IsGrass(CurrentPosition.x, CurrentPosition.y, MapData))
+		if (RandomEncounter == 0)
+			return true;
+	
+	return false;
 }
 
 int Player::AvailableMoves(const Position& InPosition, const Map& MapData)
@@ -58,18 +66,10 @@ MoveDirection Player::GetMoveInput(int InMoveFlags, char InUserInput)
 
 	switch (InUserInput)
 	{
-	case ArrowUp:
-		if (InMoveFlags & DirUp) Direction = DirUp;
-		break;
-	case ArrowDown:
-		if (InMoveFlags & DirDown) Direction = DirDown;
-		break;
-	case ArrowLeft:
-		if (InMoveFlags & DirLeft) Direction = DirLeft;
-		break;
-	case ArrowRight:
-		if (InMoveFlags & DirRight) Direction = DirRight;
-		break;
+	case ArrowUp:    if (InMoveFlags & DirUp) Direction = DirUp; break;
+	case ArrowDown:  if (InMoveFlags & DirDown) Direction = DirDown; break;
+	case ArrowLeft:  if (InMoveFlags & DirLeft) Direction = DirLeft; break;
+	case ArrowRight: if (InMoveFlags & DirRight) Direction = DirRight; break;
 	default:
 		break;
 	}
@@ -84,6 +84,14 @@ bool Player::IsBlocked(int x, int y, const Map& MapData)
 		return true;
 
 	if (MapData.GetTile(x, y) == Wall || MapData.GetTile(x, y) == River)
+		return true;
+
+	return false;
+}
+
+bool Player::IsGrass(int x, int y, const Map& MapData)
+{
+	if (MapData.GetTile(x, y) == Grass)
 		return true;
 
 	return false;

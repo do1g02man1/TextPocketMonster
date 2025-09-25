@@ -2,6 +2,7 @@
 #include "PrintScreen.h"
 #include "Player.h"
 #include "Map.h"
+#include "WildBattle.h"
 #include <string>
 
 enum Floor
@@ -11,7 +12,7 @@ enum Floor
     Bottom
 };
 
-enum GameManager_Direction
+enum GameManagerDirection
 {
     Up = 72,    // 상
     Down = 80,  // 하
@@ -32,9 +33,13 @@ public:
     void Select();  // 선택 체크
     int StartPokemonSelect(); // 스타팅 포켓몬 선택 
 
+    void Battle();
+    
+
 private:
     Player PlayerInstance;
     PrintScreen ScreenInstance;
     Map MapData;
+    WildBattle BattleInstance;
 };
 

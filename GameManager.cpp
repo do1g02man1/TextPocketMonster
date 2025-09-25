@@ -3,12 +3,11 @@
 #include "Windows.h"
 #include "PrintScreen.h"
 #include "GameManager.h"
-#include "Chimchar.h"
-#include "Piplup.h"
-#include "Turtwig.h"
 
 void GameManager::Run()
 {
+    srand(time(0));
+
     ScreenInstance.ShowPlayerName();
     std::string InPlayerName;
     std::cin >> InPlayerName;
@@ -24,6 +23,7 @@ void GameManager::Run()
 
     while (true)
     {
+
         if (_kbhit())
         {
             char UserInput = _getch();
@@ -33,8 +33,14 @@ void GameManager::Run()
             MoveDirection Direction = PlayerInstance.GetMoveInput(MoveFlags, UserInput);
 
             if (Direction != DirNone)
-                PlayerInstance.Move(Direction);
+                if (PlayerInstance.Move(Direction, MapData))    // 풀숲에서 전투에 걸렸다면
+                {                                               // 배틀 실행
+                    int RandomPokemonData = rand() % AllPokemonData.size();
+                    Pokemon PlayerPokemon = Pokemon(PlayerInstance.GetPokemon(0));
+                    Pokemon EnemyPokemon = Pokemon(AllPokemonData[RandomPokemonData], 5);
 
+                    BattleInstance.StartBattle(PlayerPokemon, EnemyPokemon);    
+                }
 		    ScreenInstance.ShowMap(MapData, PlayerInstance.GetCurrentPosition());
         }
         Sleep(10);
@@ -44,13 +50,9 @@ void GameManager::Run()
 void GameManager::Start()
 {
     if (IsStart())
-    {
         Run();
-    }
-    else
-    {
+    else 
         return;
-    }
 }
 
 bool GameManager::IsStart()
@@ -98,22 +100,22 @@ void GameManager::Select()
     case Top:
     {
         // Pokemon 클래스에 불꽃숭이 전달
-        Chimchar chimchar;                      // 불꽃숭이 생성
-        PlayerInstance.AddPokemon(chimchar);    // 플레이어 팀에 추가
+        Pokemon Chimchar = Pokemon(AllPokemonData[0], 5);   // 불꽃숭이 생성
+        PlayerInstance.AddPokemon(Chimchar);                // 플레이어 팀에 추가
         break;
     }
     case Middle:
     {
         // Pokemon 클래스에 팽도리 전달
-        Piplup piplup;                          // 팽도리 생성
-        PlayerInstance.AddPokemon(piplup);      // 플레이어 팀에 추가
+        Pokemon Piplup = Pokemon(AllPokemonData[1], 5);     // 팽도리 생성
+        PlayerInstance.AddPokemon(Piplup);                  // 플레이어 팀에 추가
         break;
     }
     case Bottom:
     {
         // Pokemon 클래스에 모부기 전달
-        Turtwig turtwig;                         // 모부기 생성
-        PlayerInstance.AddPokemon(turtwig);      // 플레이어 팀에 추가
+        Pokemon Turtwig = Pokemon(AllPokemonData[2], 5);    // 모부기 생성
+        PlayerInstance.AddPokemon(Turtwig);                 // 플레이어 팀에 추가
         break;
     }
     default:

@@ -37,6 +37,9 @@ public:
 
     // 포켓몬 관련
     void AddPokemon(const Pokemon& PokemonToAdd);
+    const Pokemon* GetTeam() const { return Team; }
+    //int GetTeamCount() const { return TeamCount; }
+    Pokemon GetPokemon(int Index) { return Team[Index]; }
     void ShowTeam() const;
 
     // 아이템 관련
@@ -49,12 +52,12 @@ public:
     int GetGold() const;
 
     // 이동 관련
-    void Move(MoveDirection InDirection);
-    int AvailableMoves(const Position& InPosition, const Map& MapData);    // 이동한 곳 구조물 체크
-    MoveDirection GetMoveInput(int InMoveFlags, char InUserInput);      // 방향키 입력
-    bool IsBlocked(int x, int y, const Map& MapData);                    // 벽인지 체크
-    void FindStartPosition(Position& OutPosition, const Map& MapData);  // 시작 지점 체크 
-
+    bool Move(MoveDirection InDirection, const Map& MapData);
+    int AvailableMoves(const Position& InPosition, const Map& MapData);     // 이동한 곳 구조물 체크
+    MoveDirection GetMoveInput(int InMoveFlags, char InUserInput);          // 방향키 입력
+    bool IsBlocked(int x, int y, const Map& MapData);                       // 벽인지 체크
+    bool IsGrass(int x, int y, const Map& MapData);
+    void FindStartPosition(Position& OutPosition, const Map& MapData);      // 시작 지점 체크 
 
     // Getter 
     std::string GetPlayerName() const { return PlayerName; }
@@ -68,10 +71,10 @@ private:
     Position CurrentPosition = Position(0, 0);
     std::string PlayerName;
     int Gold;
-    static const int MAX_TEAM = 6;
-    static const int MAX_INVENTORY = 20;
-    Pokemon Team[MAX_TEAM];
+    static const int MaxTeam = 6;
+    static const int MaxInventory = 20;
+    Pokemon Team[MaxTeam];
     int TeamCount = 0;
-    std::shared_ptr<IItem> Inventory[MAX_INVENTORY];
+    std::shared_ptr<IItem> Inventory[MaxInventory];
     int InventoryCount = 0;
 };

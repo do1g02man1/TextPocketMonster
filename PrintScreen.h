@@ -1,6 +1,7 @@
 #pragma once
 #include "Player.h"
 #include "Map.h"
+#include "Pokemon.h"
 
 class PrintScreen
 {
@@ -13,7 +14,7 @@ public:
     void ShowPlayerName() const;
 
     // 스크립트 출력
-    void ShowScript(std::string Script, int ScriptLen) const;
+    void ShowScript(std::string Script) const;
     void ShowScriptSleep(std::string Script, int ScriptLen) const;
 
     // 오박사 대사
@@ -30,9 +31,14 @@ public:
     // 맵 출력
     void ShowMap(const Map& MapData, const Position& PlayerPosition) const;
 
-    void ShowBattleScreen();    // 전투 화면
-    void ShowEnding();          // 엔딩 출력
-    
+    // 전투 화면
+    void ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon) const;
+    void ShowBattleScreen(int Index) const;
+    void ShowBattleScreenAttack(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon, int Index) const;
+
+    // 엔딩 출력
+    void ShowEnding();
+
     // 화면 삭제
     void ClearScreen() const { system("CLS"); }
 

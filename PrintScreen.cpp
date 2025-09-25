@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <Windows.h>
 #include <string>
 #include <conio.h>
@@ -8,7 +8,7 @@
 void PrintScreen::ShowLogoTop() const
 {
     system("CLS");
-    printf("\n\n\n\n\n\n");
+    printf("\n\n\n\n\n\nâ– ");
     printf("\t   _______________________________________________________________________\n");
     printf("\t       ____        __      _    _    _____     _   _       __      _     _\n");
     printf("\t       /    )    /    )    /  ,'     /    '    /  /|     /    )    /|   / \n");
@@ -17,9 +17,9 @@ void PrintScreen::ShowLogoTop() const
     printf("\t   _/_________(____/____/____\\____/____ ____/__/___|__(____/____/___|/____\n\n\n");
     printf("\t   *                          TEXT RPG ADVENTURE                          *\n\n\n");
 
-    printf("\t\t\t\t  ¢Ñ ½ÃÀÛ\n\n");
-    printf("\t\t\t\t  Á¾·á\n\n");
-    printf("\t\t\t\t  Z¸¦ ´©¸£¸é ¼±ÅÃÇÕ´Ï´Ù.");
+    printf("\t\t\t\t  â˜ž ì‹œìž‘\n\n");
+    printf("\t\t\t\t  ì¢…ë£Œ\n\n");
+    printf("\t\t\t\t  Zë¥¼ ëˆ„ë¥´ë©´ ì„ íƒí•©ë‹ˆë‹¤.");
 }
 
 void PrintScreen::ShowLogoBottom() const
@@ -34,9 +34,9 @@ void PrintScreen::ShowLogoBottom() const
     printf("\t   _/_________(____/____/____\\____/____ ____/__/___|__(____/____/___|/____\n\n\n");
     printf("\t   *                          TEXT RPG ADVENTURE                          *\n\n\n");
 
-    printf("\t\t\t\t  ½ÃÀÛ\n\n");
-    printf("\t\t\t\t  ¢Ñ Á¾·á\n\n");
-    printf("\t\t\t\t  Z¸¦ ´©¸£¸é ¼±ÅÃÇÕ´Ï´Ù.");
+    printf("\t\t\t\t  ì‹œìž‘\n\n");
+    printf("\t\t\t\t  â˜ž ì¢…ë£Œ\n\n");
+    printf("\t\t\t\t  Zë¥¼ ëˆ„ë¥´ë©´ ì„ íƒí•©ë‹ˆë‹¤.");
 }
 
 void PrintScreen::ShowPlayerName() const
@@ -44,21 +44,18 @@ void PrintScreen::ShowPlayerName() const
     //system("mode con: cols=120 lines=40");
     ClearScreen();
     
-    std::string ScriptDoctor = "[???] : ¡¦¡¦¿À, µåµð¾î ¿Ô±¸³ª!\n\n(ÇÏ¾á °¡¿îÀ» ÀÔÀº ³ëÀÎÀÌ ÃµÃµÈ÷ ´Ù°¡¿Â´Ù.)\n\n[¿À¹Ú»ç] : Ã³À½ º¸´Â ¾ó±¼ÀÌ±º.\n³ª´Â ÀÌ ¼¼°èÀÇ Æ÷ÄÏ¸óÀ» ¿¬±¸ÇÏ´Â ¿À¹Ú»ç¶ó³×.\n\n"
-        "[¿À¹Ú»ç]\nÀÚ³×´Â ÀÌ¸§ÀÌ ¹¹¶ó°í ÇßÁö?\n(ÇÃ·¹ÀÌ¾î ÀÌ¸§ ÀÔ·Â) -> ";
+    std::string ScriptDoctor = "[???] : â€¦â€¦ì˜¤, ë“œë””ì–´ ì™”êµ¬ë‚˜!\n\n(í•˜ì–€ ê°€ìš´ì„ ìž…ì€ ë…¸ì¸ì´ ì²œì²œížˆ ë‹¤ê°€ì˜¨ë‹¤.)\n\n[ì˜¤ë°•ì‚¬] : ì²˜ìŒ ë³´ëŠ” ì–¼êµ´ì´êµ°.\në‚˜ëŠ” ì´ ì„¸ê³„ì˜ í¬ì¼“ëª¬ì„ ì—°êµ¬í•˜ëŠ” ì˜¤ë°•ì‚¬ë¼ë„¤.\n\n"
+        "[ì˜¤ë°•ì‚¬]\nìžë„¤ëŠ” ì´ë¦„ì´ ë­ë¼ê³  í–ˆì§€?\n(í”Œë ˆì´ì–´ ì´ë¦„ ìž…ë ¥) -> ";
 
     int ScriptLen = ScriptDoctor.length();
     ShowScriptSleep(ScriptDoctor, ScriptLen);
 }
 
-void PrintScreen::ShowScript(std::string ScriptDoctor, int ScriptLen) const
+void PrintScreen::ShowScript(std::string ScriptDoctor) const
 {
     ClearScreen();
 
-    for (int i = 0; i < ScriptLen; i++)
-    {
-        printf("%c", ScriptDoctor[i]);
-    }
+    printf("%s", ScriptDoctor.c_str());
 }
 
 void PrintScreen::ShowScriptSleep(std::string ScriptDoctor, int ScriptLen) const
@@ -75,10 +72,10 @@ void PrintScreen::ShowScriptSleep(std::string ScriptDoctor, int ScriptLen) const
 void PrintScreen::ShowProfessorIntro(const Player& PlayerInstance) const
 {
     std::string PlayerName = PlayerInstance.GetPlayerName();
-    std::string ScriptDoctor = "[¿À¹Ú»ç]\nÈì, ±×·¸±º.\nÀÚ³× ÀÌ¸§Àº \"" + PlayerName + "\" (ÀÌ)·Î±º!\n\n[¿À¹Ú»ç]\nÁÁ¾Æ, " + PlayerName + "!\nÀÌÁ¦ ÀÚ³×ÀÇ Æ÷ÄÏ¸ó ¸ðÇèÀÌ ¸· ½ÃÀÛµÇ´Â±¸³ª!\n\n"
-        "[¿À¹Ú»ç]\nÇãÇã, ÇÏÁö¸¸ ¸ðÇè¿¡´Â Ç×»ó µçµçÇÑ µ¿·á°¡ ÇÊ¿äÇÏÁö.\nÀÚ³×ÀÇ Ã¹ ¹øÂ° Æ÷ÄÏ¸óÀ» °í¸¦ ½Ã°£ÀÌ ¿Ô³×.\n\n(¿À¹Ú»ç°¡ Ã¥»ó À§ÀÇ ¼¼ °³ÀÇ ¸ó½ºÅÍº¼À» °¡¸®Å²´Ù.)\n\n[¿À¹Ú»ç]\n"
-        "¿©±â ¼¼ ¸¶¸®ÀÇ Æ÷ÄÏ¸óÀÌ ÀÖ³×.\nÀÚ³×¿Í ÇÔ²²ÇÒ ¼ö ÀÖ´Â Ä£±¸µéÀÌÁö.\n\n1. ºÒ²É¼þÀÌ - ²¿¸¶¿ø¼þÀÌÆ÷ÄÏ¸ó\n\n2. ÆØµµ¸® - Æë±ÏÆ÷ÄÏ¸ó\n\n3. ¸ðºÎ±â - ¾î¸°ÀÙÆ÷ÄÏ¸ó\n\n[¿À¹Ú»ç]\nÀÚ, ¾î¶² Æ÷ÄÏ¸óÀ» ¼±ÅÃÇÏ°Ú³ª?\n"
-        "(¹æÇâÅ°·Î ÀÌµ¿, Z Å°·Î ¼±ÅÃ)";
+    std::string ScriptDoctor = "[ì˜¤ë°•ì‚¬]\ní , ê·¸ë ‡êµ°.\nìžë„¤ ì´ë¦„ì€ \"" + PlayerName + "\" (ì´)ë¡œêµ°!\n\n[ì˜¤ë°•ì‚¬]\nì¢‹ì•„, " + PlayerName + "!\nì´ì œ ìžë„¤ì˜ í¬ì¼“ëª¬ ëª¨í—˜ì´ ë§‰ ì‹œìž‘ë˜ëŠ”êµ¬ë‚˜!\n\n"
+        "[ì˜¤ë°•ì‚¬]\ní—ˆí—ˆ, í•˜ì§€ë§Œ ëª¨í—˜ì—ëŠ” í•­ìƒ ë“ ë“ í•œ ë™ë£Œê°€ í•„ìš”í•˜ì§€.\nìžë„¤ì˜ ì²« ë²ˆì§¸ í¬ì¼“ëª¬ì„ ê³ ë¥¼ ì‹œê°„ì´ ì™”ë„¤.\n\n(ì˜¤ë°•ì‚¬ê°€ ì±…ìƒ ìœ„ì˜ ì„¸ ê°œì˜ ëª¬ìŠ¤í„°ë³¼ì„ ê°€ë¦¬í‚¨ë‹¤.)\n\n[ì˜¤ë°•ì‚¬]\n"
+        "ì—¬ê¸° ì„¸ ë§ˆë¦¬ì˜ í¬ì¼“ëª¬ì´ ìžˆë„¤.\nìžë„¤ì™€ í•¨ê»˜í•  ìˆ˜ ìžˆëŠ” ì¹œêµ¬ë“¤ì´ì§€.\n\n1. ë¶ˆê½ƒìˆ­ì´ - ê¼¬ë§ˆì›ìˆ­ì´í¬ì¼“ëª¬\n\n2. íŒ½ë„ë¦¬ - íŽ­ê·„í¬ì¼“ëª¬\n\n3. ëª¨ë¶€ê¸° - ì–´ë¦°ìžŽí¬ì¼“ëª¬\n\n[ì˜¤ë°•ì‚¬]\nìž, ì–´ë–¤ í¬ì¼“ëª¬ì„ ì„ íƒí•˜ê² ë‚˜?\n"
+        "(ë°©í–¥í‚¤ë¡œ ì´ë™, Z í‚¤ë¡œ ì„ íƒ)";
 
     int ScriptLen = ScriptDoctor.length();
     ShowScriptSleep(ScriptDoctor, ScriptLen);
@@ -87,45 +84,42 @@ void PrintScreen::ShowProfessorIntro(const Player& PlayerInstance) const
 void PrintScreen::ShowPokemonSelection1(const Player& PlayerInstance) const
 {
     std::string PlayerName = PlayerInstance.GetPlayerName();
-    std::string ScriptDoctor = "[¿À¹Ú»ç]\nÈì, ±×·¸±º.\nÀÚ³× ÀÌ¸§Àº \"" + PlayerName + "\" (ÀÌ)·Î±º!\n\n[¿À¹Ú»ç]\nÁÁ¾Æ, " + PlayerName + "!\nÀÌÁ¦ ÀÚ³×ÀÇ Æ÷ÄÏ¸ó ¸ðÇèÀÌ ¸· ½ÃÀÛµÇ´Â±¸³ª!\n\n"
-        "[¿À¹Ú»ç]\nÇãÇã, ÇÏÁö¸¸ ¸ðÇè¿¡´Â Ç×»ó µçµçÇÑ µ¿·á°¡ ÇÊ¿äÇÏÁö.\nÀÚ³×ÀÇ Ã¹ ¹øÂ° Æ÷ÄÏ¸óÀ» °í¸¦ ½Ã°£ÀÌ ¿Ô³×.\n\n(¿À¹Ú»ç°¡ Ã¥»ó À§ÀÇ ¼¼ °³ÀÇ ¸ó½ºÅÍº¼À» °¡¸®Å²´Ù.)\n\n[¿À¹Ú»ç]\n"
-        "¿©±â ¼¼ ¸¶¸®ÀÇ Æ÷ÄÏ¸óÀÌ ÀÖ³×.\nÀÚ³×¿Í ÇÔ²²ÇÒ ¼ö ÀÖ´Â Ä£±¸µéÀÌÁö.\n\n¢Ñ 1. ºÒ²É¼þÀÌ - ²¿¸¶¿ø¼þÀÌÆ÷ÄÏ¸ó\n\n2. ÆØµµ¸® - Æë±ÏÆ÷ÄÏ¸ó\n\n3. ¸ðºÎ±â - ¾î¸°ÀÙÆ÷ÄÏ¸ó\n\n[¿À¹Ú»ç]\nÀÚ, ¾î¶² Æ÷ÄÏ¸óÀ» ¼±ÅÃÇÏ°Ú³ª?\n"
-        "(¹æÇâÅ°·Î ÀÌµ¿, Z Å°·Î ¼±ÅÃ)";
+    std::string ScriptDoctor = "[ì˜¤ë°•ì‚¬]\ní , ê·¸ë ‡êµ°.\nìžë„¤ ì´ë¦„ì€ \"" + PlayerName + "\" (ì´)ë¡œêµ°!\n\n[ì˜¤ë°•ì‚¬]\nì¢‹ì•„, " + PlayerName + "!\nì´ì œ ìžë„¤ì˜ í¬ì¼“ëª¬ ëª¨í—˜ì´ ë§‰ ì‹œìž‘ë˜ëŠ”êµ¬ë‚˜!\n\n"
+        "[ì˜¤ë°•ì‚¬]\ní—ˆí—ˆ, í•˜ì§€ë§Œ ëª¨í—˜ì—ëŠ” í•­ìƒ ë“ ë“ í•œ ë™ë£Œê°€ í•„ìš”í•˜ì§€.\nìžë„¤ì˜ ì²« ë²ˆì§¸ í¬ì¼“ëª¬ì„ ê³ ë¥¼ ì‹œê°„ì´ ì™”ë„¤.\n\n(ì˜¤ë°•ì‚¬ê°€ ì±…ìƒ ìœ„ì˜ ì„¸ ê°œì˜ ëª¬ìŠ¤í„°ë³¼ì„ ê°€ë¦¬í‚¨ë‹¤.)\n\n[ì˜¤ë°•ì‚¬]\n"
+        "ì—¬ê¸° ì„¸ ë§ˆë¦¬ì˜ í¬ì¼“ëª¬ì´ ìžˆë„¤.\nìžë„¤ì™€ í•¨ê»˜í•  ìˆ˜ ìžˆëŠ” ì¹œêµ¬ë“¤ì´ì§€.\n\nâ˜ž 1. ë¶ˆê½ƒìˆ­ì´ - ê¼¬ë§ˆì›ìˆ­ì´í¬ì¼“ëª¬\n\n2. íŒ½ë„ë¦¬ - íŽ­ê·„í¬ì¼“ëª¬\n\n3. ëª¨ë¶€ê¸° - ì–´ë¦°ìžŽí¬ì¼“ëª¬\n\n[ì˜¤ë°•ì‚¬]\nìž, ì–´ë–¤ í¬ì¼“ëª¬ì„ ì„ íƒí•˜ê² ë‚˜?\n"
+        "(ë°©í–¥í‚¤ë¡œ ì´ë™, Z í‚¤ë¡œ ì„ íƒ)";
 
-    int ScriptLen = ScriptDoctor.length();
-    ShowScript(ScriptDoctor, ScriptLen);
+    ShowScript(ScriptDoctor);
 }
 
 void PrintScreen::ShowPokemonSelection2(const Player& PlayerInstance) const
 {
     std::string PlayerName = PlayerInstance.GetPlayerName();
-    std::string ScriptDoctor = "[¿À¹Ú»ç]\nÈì, ±×·¸±º.\nÀÚ³× ÀÌ¸§Àº \"" + PlayerName + "\" (ÀÌ)·Î±º!\n\n[¿À¹Ú»ç]\nÁÁ¾Æ, " + PlayerName + "!\nÀÌÁ¦ ÀÚ³×ÀÇ Æ÷ÄÏ¸ó ¸ðÇèÀÌ ¸· ½ÃÀÛµÇ´Â±¸³ª!\n\n"
-        "[¿À¹Ú»ç]\nÇãÇã, ÇÏÁö¸¸ ¸ðÇè¿¡´Â Ç×»ó µçµçÇÑ µ¿·á°¡ ÇÊ¿äÇÏÁö.\nÀÚ³×ÀÇ Ã¹ ¹øÂ° Æ÷ÄÏ¸óÀ» °í¸¦ ½Ã°£ÀÌ ¿Ô³×.\n\n(¿À¹Ú»ç°¡ Ã¥»ó À§ÀÇ ¼¼ °³ÀÇ ¸ó½ºÅÍº¼À» °¡¸®Å²´Ù.)\n\n[¿À¹Ú»ç]\n"
-        "¿©±â ¼¼ ¸¶¸®ÀÇ Æ÷ÄÏ¸óÀÌ ÀÖ³×.\nÀÚ³×¿Í ÇÔ²²ÇÒ ¼ö ÀÖ´Â Ä£±¸µéÀÌÁö.\n\n1. ºÒ²É¼þÀÌ - ²¿¸¶¿ø¼þÀÌÆ÷ÄÏ¸ó\n\n¢Ñ 2. ÆØµµ¸® - Æë±ÏÆ÷ÄÏ¸ó\n\n3. ¸ðºÎ±â - ¾î¸°ÀÙÆ÷ÄÏ¸ó\n\n[¿À¹Ú»ç]\nÀÚ, ¾î¶² Æ÷ÄÏ¸óÀ» ¼±ÅÃÇÏ°Ú³ª?\n"
-        "(¹æÇâÅ°·Î ÀÌµ¿, Z Å°·Î ¼±ÅÃ)";
+    std::string ScriptDoctor = "[ì˜¤ë°•ì‚¬]\ní , ê·¸ë ‡êµ°.\nìžë„¤ ì´ë¦„ì€ \"" + PlayerName + "\" (ì´)ë¡œêµ°!\n\n[ì˜¤ë°•ì‚¬]\nì¢‹ì•„, " + PlayerName + "!\nì´ì œ ìžë„¤ì˜ í¬ì¼“ëª¬ ëª¨í—˜ì´ ë§‰ ì‹œìž‘ë˜ëŠ”êµ¬ë‚˜!\n\n"
+        "[ì˜¤ë°•ì‚¬]\ní—ˆí—ˆ, í•˜ì§€ë§Œ ëª¨í—˜ì—ëŠ” í•­ìƒ ë“ ë“ í•œ ë™ë£Œê°€ í•„ìš”í•˜ì§€.\nìžë„¤ì˜ ì²« ë²ˆì§¸ í¬ì¼“ëª¬ì„ ê³ ë¥¼ ì‹œê°„ì´ ì™”ë„¤.\n\n(ì˜¤ë°•ì‚¬ê°€ ì±…ìƒ ìœ„ì˜ ì„¸ ê°œì˜ ëª¬ìŠ¤í„°ë³¼ì„ ê°€ë¦¬í‚¨ë‹¤.)\n\n[ì˜¤ë°•ì‚¬]\n"
+        "ì—¬ê¸° ì„¸ ë§ˆë¦¬ì˜ í¬ì¼“ëª¬ì´ ìžˆë„¤.\nìžë„¤ì™€ í•¨ê»˜í•  ìˆ˜ ìžˆëŠ” ì¹œêµ¬ë“¤ì´ì§€.\n\n1. ë¶ˆê½ƒìˆ­ì´ - ê¼¬ë§ˆì›ìˆ­ì´í¬ì¼“ëª¬\n\nâ˜ž 2. íŒ½ë„ë¦¬ - íŽ­ê·„í¬ì¼“ëª¬\n\n3. ëª¨ë¶€ê¸° - ì–´ë¦°ìžŽí¬ì¼“ëª¬\n\n[ì˜¤ë°•ì‚¬]\nìž, ì–´ë–¤ í¬ì¼“ëª¬ì„ ì„ íƒí•˜ê² ë‚˜?\n"
+        "(ë°©í–¥í‚¤ë¡œ ì´ë™, Z í‚¤ë¡œ ì„ íƒ)";
 
-    int ScriptLen = ScriptDoctor.length();
-    ShowScript(ScriptDoctor, ScriptLen);
+    ShowScript(ScriptDoctor);
 }
 
 void PrintScreen::ShowPokemonSelection3(const Player& PlayerInstance) const
 {
     std::string PlayerName = PlayerInstance.GetPlayerName();
-    std::string ScriptDoctor = "[¿À¹Ú»ç]\nÈì, ±×·¸±º.\nÀÚ³× ÀÌ¸§Àº \"" + PlayerName + "\" (ÀÌ)·Î±º!\n\n[¿À¹Ú»ç]\nÁÁ¾Æ, " + PlayerName + "!\nÀÌÁ¦ ÀÚ³×ÀÇ Æ÷ÄÏ¸ó ¸ðÇèÀÌ ¸· ½ÃÀÛµÇ´Â±¸³ª!\n\n"
-        "[¿À¹Ú»ç]\nÇãÇã, ÇÏÁö¸¸ ¸ðÇè¿¡´Â Ç×»ó µçµçÇÑ µ¿·á°¡ ÇÊ¿äÇÏÁö.\nÀÚ³×ÀÇ Ã¹ ¹øÂ° Æ÷ÄÏ¸óÀ» °í¸¦ ½Ã°£ÀÌ ¿Ô³×.\n\n(¿À¹Ú»ç°¡ Ã¥»ó À§ÀÇ ¼¼ °³ÀÇ ¸ó½ºÅÍº¼À» °¡¸®Å²´Ù.)\n\n[¿À¹Ú»ç]\n"
-        "¿©±â ¼¼ ¸¶¸®ÀÇ Æ÷ÄÏ¸óÀÌ ÀÖ³×.\nÀÚ³×¿Í ÇÔ²²ÇÒ ¼ö ÀÖ´Â Ä£±¸µéÀÌÁö.\n\n1. ºÒ²É¼þÀÌ - ²¿¸¶¿ø¼þÀÌÆ÷ÄÏ¸ó\n\n2. ÆØµµ¸® - Æë±ÏÆ÷ÄÏ¸ó\n\n¢Ñ 3. ¸ðºÎ±â - ¾î¸°ÀÙÆ÷ÄÏ¸ó\n\n[¿À¹Ú»ç]\nÀÚ, ¾î¶² Æ÷ÄÏ¸óÀ» ¼±ÅÃÇÏ°Ú³ª?\n"
-        "(¹æÇâÅ°·Î ÀÌµ¿, Z Å°·Î ¼±ÅÃ)";
+    std::string ScriptDoctor = "[ì˜¤ë°•ì‚¬]\ní , ê·¸ë ‡êµ°.\nìžë„¤ ì´ë¦„ì€ \"" + PlayerName + "\" (ì´)ë¡œêµ°!\n\n[ì˜¤ë°•ì‚¬]\nì¢‹ì•„, " + PlayerName + "!\nì´ì œ ìžë„¤ì˜ í¬ì¼“ëª¬ ëª¨í—˜ì´ ë§‰ ì‹œìž‘ë˜ëŠ”êµ¬ë‚˜!\n\n"
+        "[ì˜¤ë°•ì‚¬]\ní—ˆí—ˆ, í•˜ì§€ë§Œ ëª¨í—˜ì—ëŠ” í•­ìƒ ë“ ë“ í•œ ë™ë£Œê°€ í•„ìš”í•˜ì§€.\nìžë„¤ì˜ ì²« ë²ˆì§¸ í¬ì¼“ëª¬ì„ ê³ ë¥¼ ì‹œê°„ì´ ì™”ë„¤.\n\n(ì˜¤ë°•ì‚¬ê°€ ì±…ìƒ ìœ„ì˜ ì„¸ ê°œì˜ ëª¬ìŠ¤í„°ë³¼ì„ ê°€ë¦¬í‚¨ë‹¤.)\n\n[ì˜¤ë°•ì‚¬]\n"
+        "ì—¬ê¸° ì„¸ ë§ˆë¦¬ì˜ í¬ì¼“ëª¬ì´ ìžˆë„¤.\nìžë„¤ì™€ í•¨ê»˜í•  ìˆ˜ ìžˆëŠ” ì¹œêµ¬ë“¤ì´ì§€.\n\n1. ë¶ˆê½ƒìˆ­ì´ - ê¼¬ë§ˆì›ìˆ­ì´í¬ì¼“ëª¬\n\n2. íŒ½ë„ë¦¬ - íŽ­ê·„í¬ì¼“ëª¬\n\nâ˜ž 3. ëª¨ë¶€ê¸° - ì–´ë¦°ìžŽí¬ì¼“ëª¬\n\n[ì˜¤ë°•ì‚¬]\nìž, ì–´ë–¤ í¬ì¼“ëª¬ì„ ì„ íƒí•˜ê² ë‚˜?\n"
+        "(ë°©í–¥í‚¤ë¡œ ì´ë™, Z í‚¤ë¡œ ì„ íƒ)";
 
-    int ScriptLen = ScriptDoctor.length();
-    ShowScript(ScriptDoctor, ScriptLen);
+    ShowScript(ScriptDoctor);
 }
 
 void PrintScreen::ShowAfterSelect(const Player& PlayerInstance) const
 {
     std::string PokemonName = PlayerInstance.GetStartPokemonName();
-    std::string ScriptDoctor = "[¿À¹Ú»ç]\n\nÇãÇã, ÀÚ³×°¡ ¼±ÅÃÇÑ Æ÷ÄÏ¸óÀº ¹Ù·Î " + PokemonName + "±¸³ª!\nÁÁ¾Æ, ÀÌÁ¦ µÎ »ç¶÷ÀÌ ÇÔ²² ¸ðÇèÀ» ¶°³¯ ÁØºñ°¡ µÇ¾ú³×.\n\n"
-        "[¿À¹Ú»ç]\n¸ðÇè Áß¿¡´Â ´Ù¾çÇÑ Æ÷ÄÏ¸óÀÌ ³ªÅ¸³ª°í,\n¶§·Î´Â ¿¹»óÄ¡ ¸øÇÑ »óÈ²µµ ¸Â´Ú¶ß¸± °Å¾ß.\nÇÏÁö¸¸ ÀÚ³×¿Í " + PokemonName + "¶ó¸é ¹®Á¦ ¾øÀ» °É¼¼.\n\n"
-        "[¿À¹Ú»ç]\n±×·³ Æ÷ÄÏ¸ó½ºÅÍÀÇ ¼¼°è·Î!";
+    std::string ScriptDoctor = "[ì˜¤ë°•ì‚¬]\n\ní—ˆí—ˆ, ìžë„¤ê°€ ì„ íƒí•œ í¬ì¼“ëª¬ì€ ë°”ë¡œ " + PokemonName + "êµ¬ë‚˜!\nì¢‹ì•„, ì´ì œ ë‘ ì‚¬ëžŒì´ í•¨ê»˜ ëª¨í—˜ì„ ë– ë‚  ì¤€ë¹„ê°€ ë˜ì—ˆë„¤.\n\n"
+        "[ì˜¤ë°•ì‚¬]\nëª¨í—˜ ì¤‘ì—ëŠ” ë‹¤ì–‘í•œ í¬ì¼“ëª¬ì´ ë‚˜íƒ€ë‚˜ê³ ,\në•Œë¡œëŠ” ì˜ˆìƒì¹˜ ëª»í•œ ìƒí™©ë„ ë§žë‹¥ëœ¨ë¦´ ê±°ì•¼.\ní•˜ì§€ë§Œ ìžë„¤ì™€ " + PokemonName + "ë¼ë©´ ë¬¸ì œ ì—†ì„ ê±¸ì„¸.\n\n"
+        "[ì˜¤ë°•ì‚¬]\nê·¸ëŸ¼ í¬ì¼“ëª¬ìŠ¤í„°ì˜ ì„¸ê³„ë¡œ!";
 
     int ScriptLen = ScriptDoctor.length();
     ShowScriptSleep(ScriptDoctor, ScriptLen);
@@ -140,7 +134,7 @@ void PrintScreen::ShowMap(const Map& MapData, const Position& PlayerPosition) co
         for (int x = 0; x < MapData.GetWidth(); x++)
         {
             if (x == PlayerPosition.x && y == PlayerPosition.y)
-                printf("O");  // ÇÃ·¹ÀÌ¾î
+                printf("O");  // í”Œë ˆì´ì–´
             else
                 printf("%c", MapData.GetTile(x, y));
         }
@@ -148,3 +142,115 @@ void PrintScreen::ShowMap(const Map& MapData, const Position& PlayerPosition) co
     }
 }
 
+void PrintScreen::ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon) const
+{
+    const int HPBarTicks = 10;
+    char PlayerHPBar[HPBarTicks + 1]{ "-" };
+    char EnemyHPBar[HPBarTicks + 1]{ "-" };
+    // CurrentHP / (MaxHP / 10) 
+    int PlayerHPRate = PlayerPokemon.GetCurrentHP() / (PlayerPokemon.GetMaxHP() / HPBarTicks);
+    int EnemyHPRate = EnemyPokemon.GetCurrentHP() / (EnemyPokemon.GetMaxHP() / HPBarTicks);
+
+    for (int i = 0; i < PlayerHPRate; i++)
+    {
+        PlayerHPBar[i] = '=';
+    }
+    PlayerHPBar[HPBarTicks] = '\0';
+
+    for (int i = 0; i < EnemyHPRate; i++)
+    {
+        EnemyHPBar[i] = '=';
+    }
+    EnemyHPBar[HPBarTicks] = '\0';
+
+    ClearScreen();
+    printf(" ìƒëŒ€ [%s]\tLv.%d\n", EnemyPokemon.GetName().c_str(), EnemyPokemon.GetLevel());
+    printf(" HP: [%s] %d / %d\n", EnemyHPBar, EnemyPokemon.GetCurrentHP(), EnemyPokemon.GetMaxHP());
+    printf(" â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf(" â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n");
+    printf(" ìžì‹  [%s]\tLv.%d\n", PlayerPokemon.GetName().c_str(), PlayerPokemon.GetLevel());
+    printf(" HP: [%s] %d / %d\n", PlayerHPBar, PlayerPokemon.GetCurrentHP(), PlayerPokemon.GetMaxHP());
+    printf(" â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n");
+    printf(" ë©”ì‹œì§€ : ìƒëŒ€ê°€ ê³µê²©í–ˆë‹¤.\n"); // ìƒí™©ì— ë§žëŠ” ëŒ€ì‚¬ ìž…ë ¥
+    printf(" â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n");
+}
+
+void PrintScreen::ShowBattleScreen(int Index) const
+{
+    switch (Index)
+    {
+    case 0:
+        printf(" â˜ž [ê³µê²©]\n");
+        printf(" [ì•„ì´í…œ]\n");
+        printf(" [í¬ì¼“ëª¬]\n");
+        printf(" [ë„ë§]\n");
+        break;
+    case 1:
+        printf(" [ê³µê²©]\n");
+        printf(" â˜ž [ì•„ì´í…œ]\n");
+        printf(" [í¬ì¼“ëª¬]\n");
+        printf(" [ë„ë§]\n");
+        break;
+    case 2:
+        printf(" [ê³µê²©]\n");
+        printf(" [ì•„ì´í…œ]\n");
+        printf(" â˜ž [í¬ì¼“ëª¬]\n");
+        printf(" [ë„ë§]\n");
+        break;
+    case 3:
+        printf(" [ê³µê²©]\n");
+        printf(" [ì•„ì´í…œ]\n");
+        printf(" [í¬ì¼“ëª¬]\n");
+        printf(" â˜ž [ë„ë§]\n");
+        break;
+    default:
+        break;
+    }
+    printf(" â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n");
+}
+
+void PrintScreen::ShowBattleScreenAttack(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon, int Index) const
+{
+    switch (Index)
+    {
+    case 0:
+        for (int i = 0; i < PlayerPokemon.GetSkillCount(); i++)
+        {
+            if (i == Index)
+                printf("â˜ž");
+            printf(" [%s]\n", PlayerPokemon.GetSkillName(i).c_str());
+        }
+        break;
+    case 1:
+        for (int i = 0; i < PlayerPokemon.GetSkillCount(); i++)
+        {
+            if (i == Index)
+                printf("â˜ž");
+            printf(" [%s]\n", PlayerPokemon.GetSkillName(i).c_str());
+        }
+        break;
+    case 2:
+        for (int i = 0; i < PlayerPokemon.GetSkillCount(); i++)
+        {
+            if (i == Index)
+                printf("â˜ž");
+            printf(" [%s]\n", PlayerPokemon.GetSkillName(i).c_str());
+        }
+        break;
+    case 3:
+        for (int i = 0; i < PlayerPokemon.GetSkillCount(); i++)
+        {
+            if (i == Index)
+                printf("â˜ž");
+            printf(" [%s]\n", PlayerPokemon.GetSkillName(i).c_str());
+        }
+        break;
+    default:
+        break;
+    }
+}
