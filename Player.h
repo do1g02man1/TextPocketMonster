@@ -17,7 +17,8 @@ enum Tile
     Grass = 'M',
     River = '~',
     Start = 'O',
-    NpcShop = '$'
+    NpcShop = '$',
+    Boss = 'X'
 };
 
 enum MoveDirection
@@ -64,6 +65,7 @@ public:
     bool IsBlocked(int x, int y, const Map& MapData);                       // 벽인지 체크
     bool IsGrass(int x, int y, const Map& MapData);
     bool IsShopNearby(const Position& InPosition, const Map& MapData) const;
+    bool IsBossNearby(const Position& InPosition, const Map& MapData) const;
     void FindStartPosition(Position& OutPosition, const Map& MapData);      // 시작 지점 체크 
 
     // Getter 

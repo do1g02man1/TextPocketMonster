@@ -38,10 +38,13 @@ public:
     void ShowInventoryUI(const std::vector<InventorySlot>& Inventory, int Index) const;
     
     // 상점 출력
-    void ShowShopScreen(const Player& player, const std::vector<InventorySlot>& shopItems, int selectedIndex) const;
+    void ShowShopScreen(const Player& PlayerInstance, const std::vector<InventorySlot>& ShopItems, int SelectCount) const;
 
     // 엔딩 출력
-    void ShowEnding();
+    void ShowEnding(const Player& PlayerInstance, const Pokemon& PlayerPokemon) const;
+
+    // 게임 오버
+    void ShowGameOver() const;
 
     // 화면 삭제
     void ClearScreen() const { system("CLS"); }

@@ -3,6 +3,7 @@
 #include <string>
 #include <conio.h>
 #include <iostream>
+#include <stdlib.h>
 #include "PrintScreen.h"
 
 void PrintScreen::ShowLogoTop() const
@@ -269,3 +270,55 @@ void PrintScreen::ShowShopScreen(const Player& PlayerInstance, const std::vector
     printf(" ↑↓ : 이동, Z : 구매, X : 나가기\n");
     printf(" ==============================================\n");
 }
+
+void PrintScreen::ShowEnding(const Player& PlayerInstance, const Pokemon& PlayerPokemon) const
+{
+    ClearScreen();
+    printf(" ────────────────────────────────────────\n");
+    printf("                 GAME CLEAR!\n");
+    printf(" ────────────────────────────────────────\n\n");
+
+    printf(" 플레이어: %s\n", PlayerInstance.GetName().c_str());
+    printf(" 최종 보유 골드: %d G\n", PlayerInstance.GetGold());
+    printf(" 최고 레벨 포켓몬: Lv.%d\n\n", PlayerPokemon.GetLevel());
+
+    printf(" 축하합니다! 모든 모험을 성공적으로 마쳤습니다!\n");
+    printf(" 앞으로도 새로운 도전을 계속하세요!\n\n");
+
+    printf(" ────────────────────────────────────────\n");
+    printf(" 종료하려면 ESC를 누르세요...\n");
+
+    while (true)
+    {
+        if (_kbhit())
+        {
+            char UserInput = _getch();
+            if (UserInput == 27)
+            {
+                exit(0);
+            }
+        }
+    }
+}
+
+void PrintScreen::ShowGameOver() const
+{
+    ClearScreen();  
+    printf(" ────────────────────────────────────────\n");
+    printf("                 GAME OVER . . .\n");
+    printf(" ────────────────────────────────────────\n\n");
+    printf(" 종료하려면 ESC를 누르세요...\n");
+    
+    while (true)
+    {
+        if (_kbhit())
+        {
+            char UserInput = _getch();
+            if (UserInput == 27)
+            {
+                exit(0);
+            }
+        }
+    }
+}
+

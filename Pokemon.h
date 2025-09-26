@@ -16,6 +16,7 @@ struct PokemonData {
 };
 
 extern std::vector<PokemonData> AllPokemonData;
+extern struct PokemonData FinalBoss;
 
 class Pokemon
 {
@@ -39,7 +40,7 @@ public:
     void LearnSkill(std::shared_ptr<ISkill> Skill, int Index);
     void TakeDamage(int InAmount);
     bool IsFainted() const;
-    void Heal(int InHeal) { CurrentHP += 50; }
+    void Heal(int InHeal);
 
     // 성장 관련
     void AssignDefaultSkills(const PokemonData& Data);

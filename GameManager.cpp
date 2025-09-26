@@ -33,8 +33,17 @@ void GameManager::Run()
             MoveDirection Direction = PlayerInstance.GetMoveInput(MoveFlags, UserInput);
 
             if (UserInput == 'z' || UserInput == 'Z')
+            {
                 if (PlayerInstance.IsShopNearby(PlayerInstance.GetCurrentPosition(), MapData))
                     OpenShop();
+                
+                if (PlayerInstance.IsBossNearby(PlayerInstance.GetCurrentPosition(), MapData))
+                {
+                    Pokemon& PlayerPokemon = PlayerInstance.GetPokemon(0);
+                    Pokemon EnemyPokemon = Pokemon(FinalBoss, 50);
+                    BossInstance.StartBattle(PlayerInstance, PlayerPokemon, EnemyPokemon);
+                }
+            }
 
             if (Direction != DirNone)
                 if (PlayerInstance.Move(Direction, MapData))    // 풀숲에서 전투에 걸렸다면

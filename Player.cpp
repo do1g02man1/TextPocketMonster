@@ -122,7 +122,7 @@ bool Player::IsBlocked(int x, int y, const Map& MapData)
 		y < 0 || y >= MapData.GetHeight())
 		return true;
 
-	if (MapData.GetTile(x, y) == Wall || MapData.GetTile(x, y) == River || MapData.GetTile(x, y) == NpcShop)
+	if (MapData.GetTile(x, y) == Wall || MapData.GetTile(x, y) == River || MapData.GetTile(x, y) == NpcShop || MapData.GetTile(x, y) == Boss)
 		return true;
 
 	return false;
@@ -148,6 +148,22 @@ bool Player::IsShopNearby(const Position& InPosition, const Map& MapData) const
 	if (y < Height - 1 && MapData.GetTile(x, y + 1) == NpcShop) return true; // 아래
 	if (x > 0 && MapData.GetTile(x - 1, y) == NpcShop) return true;      // 왼쪽
 	if (x < Width - 1 && MapData.GetTile(x + 1, y) == NpcShop) return true;  // 오른쪽
+
+	return false;
+}
+
+bool Player::IsBossNearby(const Position& InPosition, const Map& MapData) const
+{
+	int x = InPosition.x;
+	int y = InPosition.y;
+	int Width = MapData.GetWidth();
+	int Height = MapData.GetHeight();
+
+	// 상하좌우 타일 체크
+	if (y > 0 && MapData.GetTile(x, y - 1) == Boss) return true;      // 위
+	if (y < Height - 1 && MapData.GetTile(x, y + 1) == Boss) return true; // 아래
+	if (x > 0 && MapData.GetTile(x - 1, y) == Boss) return true;      // 왼쪽
+	if (x < Width - 1 && MapData.GetTile(x + 1, y) == Boss) return true;  // 오른쪽
 
 	return false;
 }

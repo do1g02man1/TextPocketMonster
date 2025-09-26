@@ -3,14 +3,6 @@
 #include "Pokemon.h"
 #include "PrintScreen.h"
 
-enum BattleMenu
-{
-	Attack,
-	Item,
-	Pocketmon,
-	Run
-};
-
 class WildBattle : public Battle
 {
 public:

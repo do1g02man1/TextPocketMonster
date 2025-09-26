@@ -2,6 +2,14 @@
 #include "Pokemon.h"
 #include "Skill.h"
 
+enum BattleMenu
+{
+	Attack,
+	Item,
+	Pocketmon,
+	Run
+};
+
 class Battle
 {
 public:

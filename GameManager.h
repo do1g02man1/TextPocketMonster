@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Map.h"
 #include "WildBattle.h"
+#include "BossBattle.h"
 #include "Pokemon.h"
 #include <string>
 
@@ -43,5 +44,6 @@ private:
     PrintScreen ScreenInstance;
     Map MapData;
     WildBattle BattleInstance;
+    BossBattle BossInstance;
 };
 

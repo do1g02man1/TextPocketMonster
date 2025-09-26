@@ -1,9 +1,18 @@
 #pragma once
 #include "Battle.h"
+#include "Pokemon.h"
+#include "PrintScreen.h"
 
 class BossBattle : public Battle
 {
 public:
-	void StartBattle(Pokemon& player, Pokemon& boss);
+	// 전투 컨트롤러
+	void StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon);
+	void PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon);
+	void EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon);
+	std::string SelectItem(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon);
+
+private:
+	PrintScreen ScreenInstance;
 };
 

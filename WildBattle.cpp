@@ -3,6 +3,8 @@
 #include <time.h>
 #include <conio.h>
 
+bool IsFastBoss = true;
+
 void WildBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon)
 {
 // 3. 전투 루프 시작
@@ -34,15 +36,14 @@ void WildBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pok
 // - 이전 맵/게임 화면으로 복귀
     int SelectCount = 0;
     char UserInput;
-    bool IsFast = true;
     int GoldReward = 0;
     bool RandomCount = false;
     std::string CheckItem;
 
     if (PlayerPokemon.GetSpeed() > EnemyPokemon.GetSpeed()) 
-        IsFast = true;
+        IsFastBoss = true;
     else 
-        IsFast = false;
+        IsFastBoss = false;
     
     // 1. 화면 초기화
     // - 이전 UI 지우고 전투용 UI 준비
@@ -60,7 +61,7 @@ void WildBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pok
     while (PlayerPokemon.GetCurrentHP() > 0
         && EnemyPokemon.GetCurrentHP() > 0)
     {
-        if (IsFast)
+        if (IsFastBoss)
         {
             if (_kbhit())
             {
@@ -88,9 +89,10 @@ void WildBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pok
                         if (CheckItem != "")
                             ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 " + CheckItem + "(을)를 사용했다.");
                         else
-                            IsFast = !IsFast;   // 인벤토리가 비어서 나오면 턴 종료 안함
+                            IsFastBoss = !IsFastBoss;   // 인벤토리가 비어있거나 x 눌러서 나오면 턴 종료 안함
                         break;
                     case Pocketmon:
+                        break;
                     case Run:
                         RandomCount = rand() % 2;
                         if (RandomCount)
@@ -106,7 +108,7 @@ void WildBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pok
                         }
                     default: break;
                     }
-                    IsFast = !IsFast;
+                    IsFastBoss = !IsFastBoss;
                     break;
                 default:
                     break;
@@ -118,7 +120,7 @@ void WildBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pok
         else
         {
             EnemyBattleAttack(PlayerInstance, PlayerPokemon, EnemyPokemon);
-            IsFast = !IsFast;
+            IsFastBoss = !IsFastBoss;
             ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 무엇을 할까?");
             ScreenInstance.ShowBattleScreen(SelectCount);
         }
@@ -210,6 +212,10 @@ void WildBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
                 }
                 return;
             }
+            case 'x':
+            case 'X':
+                IsFastBoss = !IsFastBoss;
+                return;
             default:
                 break;
             }
@@ -267,7 +273,7 @@ void WildBattle::EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemo
         Sleep(1000);
         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerInstance.GetName() + "(은)는 눈 앞이 깜깜해졌다!");
         Sleep(1000);
-        return; // 전투 종료
+        ScreenInstance.ShowGameOver();
     }
 }
 
@@ -322,6 +328,9 @@ std::string WildBattle::SelectItem(Player& PlayerInstance, Pokemon& PlayerPokemo
                     break;
                 }
                 break;
+            case 'x':
+            case 'X':
+                return "";
             default:
                 break;
             }
