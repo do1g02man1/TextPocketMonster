@@ -20,7 +20,7 @@ void BossBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pok
 
     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "앗! 야생의 " + EnemyPokemon.GetName() + "(이)가 나타났다!");
     ScreenInstance.ShowBattleScreen(SelectCount);
-    Sleep(2000);
+    Sleep(1500);
     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 무엇을 할까?");
     ScreenInstance.ShowBattleScreen(SelectCount);
     while (PlayerPokemon.GetCurrentHP() > 0
@@ -60,7 +60,7 @@ void BossBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pok
                         break;
                     case Run:
                         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "불가능하다.");
-                        Sleep(2000);
+                        Sleep(1500);
                     default: break;
                     }
                     IsFastBoss = !IsFastBoss;
@@ -119,7 +119,7 @@ void BossBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
 
                     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "의 " + Skill->GetName() + " 공격!");
                     ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
-                    Sleep(2000);
+                    Sleep(1500);
                     int RandValue = rand() % 100;
                     if (RandValue < Skill->GetAccuracy())   // 명중
                     {
@@ -137,27 +137,27 @@ void BossBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
                         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "그러나 " + PlayerPokemon.GetName() + "의 " + Skill->GetName() + "는 빗나갔다!");
                         ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
                     }
-                    Sleep(2000);
+                    Sleep(1500);
                 }
                 if (EnemyPokemon.IsFainted())
                 {
                     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, EnemyPokemon.GetName() + "(은)는 쓰러졌다!");
                     ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
-                    Sleep(2000);
+                    Sleep(1500);
                     // GoldReward = (BaseReward + Level * 10) * RandomFactor
                     Gold = CalculateWildPokemonGold(EnemyPokemon);
                     PlayerInstance.AddGold(Gold);
                     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 " + std::to_string(Gold) + "G를 획득했다!");
-                    Sleep(2000);
+                    Sleep(1500);
                     int GetExp = CalculateExperience(EnemyPokemon);
                     int PrevLevel = PlayerPokemon.GetLevel();
                     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerInstance.GetName() + "(은)는 " + std::to_string(GetExp) + "(을)를 획득했다!");
-                    Sleep(2000);
+                    Sleep(1500);
                     PlayerPokemon.GainExp(GetExp);
                     if (PrevLevel != PlayerPokemon.GetLevel())
                     {
                         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 Lv." + std::to_string(PlayerPokemon.GetLevel()) + "(이)가 되었다!");
-                        Sleep(2000);
+                        Sleep(1500);
                     }
 
                     ScreenInstance.ShowEnding(PlayerInstance, PlayerPokemon);
@@ -185,7 +185,7 @@ void BossBattle::EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemo
     if (EnemySkill != nullptr)
     {
         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "상대 " + EnemyPokemon.GetName() + "(이)가 " + EnemySkill->GetName() + "을(를) 사용했다!");
-        Sleep(2000);
+        Sleep(1500);
 
         int RandValue = rand() % 100;
         if (RandValue < EnemySkill->GetAccuracy())
@@ -208,15 +208,15 @@ void BossBattle::EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemo
                 "상대 " + EnemyPokemon.GetName() + "의 " + EnemySkill->GetName() + "(은)는 빗나갔다!"
             );
         }
-        Sleep(2000);
+        Sleep(1500);
     }
 
     if (PlayerPokemon.IsFainted())
     {
         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 쓰러졌다!");
-        Sleep(2000);
+        Sleep(1500);
         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerInstance.GetName() + "(은)는 눈 앞이 깜깜해졌다!");
-        Sleep(2000);
+        Sleep(1500);
         ScreenInstance.ShowGameOver();
     }
 }
@@ -230,7 +230,7 @@ std::string BossBattle::SelectItem(Player& PlayerInstance, Pokemon& PlayerPokemo
     if (PlayerInstance.Inventory.empty())
     {
         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "인벤토리가 비어 있습니다.");
-        Sleep(2000);
+        Sleep(1500);
         return "";
     }
 

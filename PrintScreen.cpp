@@ -65,7 +65,7 @@ void PrintScreen::ShowScriptSleep(std::string ScriptDoctor, int ScriptLen) const
     for (int i = 0; i < ScriptLen; i++)
     {
         printf("%c", ScriptDoctor[i]);
-        Sleep(10);
+        Sleep(20);
     }
 }
 
