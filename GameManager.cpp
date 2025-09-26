@@ -32,14 +32,18 @@ void GameManager::Run()
             int MoveFlags = PlayerInstance.AvailableMoves(PlayerInstance.GetCurrentPosition(), MapData);
             MoveDirection Direction = PlayerInstance.GetMoveInput(MoveFlags, UserInput);
 
+            if (UserInput == 'z' || UserInput == 'Z')
+                if (PlayerInstance.IsShopNearby(PlayerInstance.GetCurrentPosition(), MapData))
+                    OpenShop();
+
             if (Direction != DirNone)
                 if (PlayerInstance.Move(Direction, MapData))    // 풀숲에서 전투에 걸렸다면
                 {                                               // 배틀 실행
                     int RandomPokemonData = rand() % AllPokemonData.size();
-                    Pokemon PlayerPokemon = Pokemon(PlayerInstance.GetPokemon(0));
+                    Pokemon& PlayerPokemon = PlayerInstance.GetPokemon(0);
                     Pokemon EnemyPokemon = Pokemon(AllPokemonData[RandomPokemonData], 5);
 
-                    BattleInstance.StartBattle(PlayerPokemon, EnemyPokemon);    
+                    BattleInstance.StartBattle(PlayerInstance, PlayerPokemon, EnemyPokemon);    
                 }
 		    ScreenInstance.ShowMap(MapData, PlayerInstance.GetCurrentPosition());
         }
@@ -168,6 +172,50 @@ int GameManager::StartPokemonSelect()
             default:
                 break;
             }
+        }
+    }
+}
+
+void GameManager::OpenShop()
+{
+    int SelectCount = 0;
+    char UserInput;
+
+    ScreenInstance.ShowShopScreen(PlayerInstance, ShopInstance.GetItems(), SelectCount);
+    while (true)
+    {
+        if (_kbhit())
+        {
+            UserInput = _getch();
+            if (UserInput == -32)     // 방향키 입력은 2바이트라서 한번 더 읽음
+                UserInput = _getch();
+
+            switch (UserInput)
+            {
+            case ArrowUp:   // 위로
+                if (SelectCount > 0) SelectCount--;
+                break;
+
+            case ArrowDown: // 아래로
+                if (SelectCount < (int)PlayerInstance.Inventory.size() - 1) SelectCount++;
+                break;
+
+            case 'z':   // 구매 시도
+            case 'Z':
+            {
+                ShopInstance.BuyItem(PlayerInstance, SelectCount);
+                Sleep(500);
+                break;
+            }
+
+            case 'x':   // 나가기
+            case 'X':
+                return;
+
+            default:
+                break;
+            }
+            ScreenInstance.ShowShopScreen(PlayerInstance, ShopInstance.GetItems(), SelectCount);
         }
     }
 }

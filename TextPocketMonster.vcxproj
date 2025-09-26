@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BossBattle.cpp" />
     <ClCompile Include="CaptureSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -130,7 +131,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Pokeball.cpp" />
     <ClCompile Include="Pokemon.cpp" />
-    <ClCompile Include="Postion.cpp" />
+    <ClCompile Include="Potion.cpp" />
     <ClCompile Include="PrintScreen.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Skill.cpp" />
@@ -138,20 +139,19 @@
     <ClCompile Include="WildBattle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Battle.h" />
     <ClInclude Include="BossBattle.h" />
     <ClInclude Include="CaptureSystem.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="IBattle.h" />
     <ClInclude Include="ICapture.h" />
     <ClInclude Include="IItem.h" />
-    <ClInclude Include="IScreen.h" />
     <ClInclude Include="ISkill.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Pokeball.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="Position.h" />
-    <ClInclude Include="Postion.h" />
+    <ClInclude Include="Potion.h" />
     <ClInclude Include="PrintScreen.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="Skill.h" />

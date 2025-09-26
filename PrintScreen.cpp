@@ -71,7 +71,7 @@ void PrintScreen::ShowScriptSleep(std::string ScriptDoctor, int ScriptLen) const
 
 void PrintScreen::ShowProfessorIntro(const Player& PlayerInstance) const
 {
-    std::string PlayerName = PlayerInstance.GetPlayerName();
+    std::string PlayerName = PlayerInstance.GetName();
     std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" (이)로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
         "[오박사]\n허허, 하지만 모험에는 항상 든든한 동료가 필요하지.\n자네의 첫 번째 포켓몬을 고를 시간이 왔네.\n\n(오박사가 책상 위의 세 개의 몬스터볼을 가리킨다.)\n\n[오박사]\n"
         "여기 세 마리의 포켓몬이 있네.\n자네와 함께할 수 있는 친구들이지.\n\n1. 불꽃숭이 - 꼬마원숭이포켓몬\n\n2. 팽도리 - 펭귄포켓몬\n\n3. 모부기 - 어린잎포켓몬\n\n[오박사]\n자, 어떤 포켓몬을 선택하겠나?\n"
@@ -83,7 +83,7 @@ void PrintScreen::ShowProfessorIntro(const Player& PlayerInstance) const
 
 void PrintScreen::ShowPokemonSelection1(const Player& PlayerInstance) const
 {
-    std::string PlayerName = PlayerInstance.GetPlayerName();
+    std::string PlayerName = PlayerInstance.GetName();
     std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" (이)로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
         "[오박사]\n허허, 하지만 모험에는 항상 든든한 동료가 필요하지.\n자네의 첫 번째 포켓몬을 고를 시간이 왔네.\n\n(오박사가 책상 위의 세 개의 몬스터볼을 가리킨다.)\n\n[오박사]\n"
         "여기 세 마리의 포켓몬이 있네.\n자네와 함께할 수 있는 친구들이지.\n\n☞ 1. 불꽃숭이 - 꼬마원숭이포켓몬\n\n2. 팽도리 - 펭귄포켓몬\n\n3. 모부기 - 어린잎포켓몬\n\n[오박사]\n자, 어떤 포켓몬을 선택하겠나?\n"
@@ -94,7 +94,7 @@ void PrintScreen::ShowPokemonSelection1(const Player& PlayerInstance) const
 
 void PrintScreen::ShowPokemonSelection2(const Player& PlayerInstance) const
 {
-    std::string PlayerName = PlayerInstance.GetPlayerName();
+    std::string PlayerName = PlayerInstance.GetName();
     std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" (이)로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
         "[오박사]\n허허, 하지만 모험에는 항상 든든한 동료가 필요하지.\n자네의 첫 번째 포켓몬을 고를 시간이 왔네.\n\n(오박사가 책상 위의 세 개의 몬스터볼을 가리킨다.)\n\n[오박사]\n"
         "여기 세 마리의 포켓몬이 있네.\n자네와 함께할 수 있는 친구들이지.\n\n1. 불꽃숭이 - 꼬마원숭이포켓몬\n\n☞ 2. 팽도리 - 펭귄포켓몬\n\n3. 모부기 - 어린잎포켓몬\n\n[오박사]\n자, 어떤 포켓몬을 선택하겠나?\n"
@@ -105,7 +105,7 @@ void PrintScreen::ShowPokemonSelection2(const Player& PlayerInstance) const
 
 void PrintScreen::ShowPokemonSelection3(const Player& PlayerInstance) const
 {
-    std::string PlayerName = PlayerInstance.GetPlayerName();
+    std::string PlayerName = PlayerInstance.GetName();
     std::string ScriptDoctor = "[오박사]\n흠, 그렇군.\n자네 이름은 \"" + PlayerName + "\" (이)로군!\n\n[오박사]\n좋아, " + PlayerName + "!\n이제 자네의 포켓몬 모험이 막 시작되는구나!\n\n"
         "[오박사]\n허허, 하지만 모험에는 항상 든든한 동료가 필요하지.\n자네의 첫 번째 포켓몬을 고를 시간이 왔네.\n\n(오박사가 책상 위의 세 개의 몬스터볼을 가리킨다.)\n\n[오박사]\n"
         "여기 세 마리의 포켓몬이 있네.\n자네와 함께할 수 있는 친구들이지.\n\n1. 불꽃숭이 - 꼬마원숭이포켓몬\n\n2. 팽도리 - 펭귄포켓몬\n\n☞ 3. 모부기 - 어린잎포켓몬\n\n[오박사]\n자, 어떤 포켓몬을 선택하겠나?\n"
@@ -145,8 +145,8 @@ void PrintScreen::ShowMap(const Map& MapData, const Position& PlayerPosition) co
 void PrintScreen::ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon, std::string InStatus) const
 {
     const int HPBarTicks = 10;
-    char PlayerHPBar[HPBarTicks + 1]{ "-" };
-    char EnemyHPBar[HPBarTicks + 1]{ "-" };
+    char PlayerHPBar[HPBarTicks + 1]{ ' ', };
+    char EnemyHPBar[HPBarTicks + 1]{ ' ', };
     // CurrentHP / (MaxHP / 10) 
     int PlayerHPRate = (PlayerPokemon.GetCurrentHP() * HPBarTicks) / PlayerPokemon.GetMaxHP();
     int EnemyHPRate = (EnemyPokemon.GetCurrentHP() * HPBarTicks) / EnemyPokemon.GetMaxHP();
@@ -154,20 +154,22 @@ void PrintScreen::ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& 
     if (EnemyHPRate > HPBarTicks) EnemyHPRate = HPBarTicks;
     if (PlayerHPRate > HPBarTicks) PlayerHPRate = HPBarTicks;
 
-    for (int i = 0; i < PlayerHPRate; i++)
+    for (int i = 0; i < HPBarTicks; i++)
     {
-        PlayerHPBar[i] = '=';
+        if (PlayerHPRate > i) PlayerHPBar[i] = '=';
+        else PlayerHPBar[i] = ' ';
     }
     PlayerHPBar[HPBarTicks] = '\0';
 
-    for (int i = 0; i < EnemyHPRate; i++)
+    for (int i = 0; i < HPBarTicks; i++)
     {
-        EnemyHPBar[i] = '=';
+        if (EnemyHPRate > i) EnemyHPBar[i] = '=';
+        else EnemyHPBar[i] = ' ';
     }
     EnemyHPBar[HPBarTicks] = '\0';
 
     ClearScreen();
-    printf(" 상대 [%s]\tLv.%d\n", EnemyPokemon.GetName().c_str(), EnemyPokemon.GetLevel());
+    printf(" [야생 %s]\tLv.%d\n", EnemyPokemon.GetName().c_str(), EnemyPokemon.GetLevel());
     printf(" HP: [%s] %d / %d\n", EnemyHPBar, EnemyPokemon.GetCurrentHP(), EnemyPokemon.GetMaxHP());
     printf(" ────────────────────────────────────────\n");
     printf("\n");
@@ -176,7 +178,7 @@ void PrintScreen::ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& 
     printf("\n");
     printf("\n");
     printf(" ────────────────────────────────────────\n");
-    printf(" 자신 [%s]\tLv.%d\n", PlayerPokemon.GetName().c_str(), PlayerPokemon.GetLevel());
+    printf(" [%s]\tLv.%d\n", PlayerPokemon.GetName().c_str(), PlayerPokemon.GetLevel());
     printf(" HP: [%s] %d / %d\n", PlayerHPBar, PlayerPokemon.GetCurrentHP(), PlayerPokemon.GetMaxHP());
     printf(" ────────────────────────────────────────\n");
     printf(" %s\n", InStatus.c_str()); // 상황에 맞는 대사 입력
@@ -219,41 +221,51 @@ void PrintScreen::ShowBattleScreen(int Index) const
 
 void PrintScreen::ShowBattleScreenAttack(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon, int Index) const
 {
-    switch (Index)
+    for (int i = 0; i < PlayerPokemon.GetSkillCount(); i++)
     {
-    case 0:
-        for (int i = 0; i < PlayerPokemon.GetSkillCount(); i++)
-        {
-            if (i == Index)
-                printf("☞");
-            printf(" [%s]\n", PlayerPokemon.GetSkillName(i).c_str());
-        }
-        break;
-    case 1:
-        for (int i = 0; i < PlayerPokemon.GetSkillCount(); i++)
-        {
-            if (i == Index)
-                printf("☞");
-            printf(" [%s]\n", PlayerPokemon.GetSkillName(i).c_str());
-        }
-        break;
-    case 2:
-        for (int i = 0; i < PlayerPokemon.GetSkillCount(); i++)
-        {
-            if (i == Index)
-                printf("☞");
-            printf(" [%s]\n", PlayerPokemon.GetSkillName(i).c_str());
-        }
-        break;
-    case 3:
-        for (int i = 0; i < PlayerPokemon.GetSkillCount(); i++)
-        {
-            if (i == Index)
-                printf("☞");
-            printf(" [%s]\n", PlayerPokemon.GetSkillName(i).c_str());
-        }
-        break;
-    default:
-        break;
+        if (i == Index)
+            printf("☞");
+        printf(" [%s]\n", PlayerPokemon.GetSkillName(i).c_str());
     }
+}
+
+void PrintScreen::ShowInventoryUI(const std::vector<InventorySlot>& Inventory, int Index) const
+{
+
+    for (int i = 0; i < Inventory.size(); i++)
+    {
+        if (i == Index)
+            printf("☞ ");
+        else
+            printf("   ");
+
+        printf("[%s] x%d\n", Inventory[i].Item->GetName().c_str(), Inventory[i].Count);
+    }
+}
+
+void PrintScreen::ShowShopScreen(const Player& PlayerInstance, const std::vector<InventorySlot>& ShopItems, int SelectCount) const
+{
+    ClearScreen();
+    printf(" ================== [ 상점 ] ==================\n");
+    printf(" 보유 골드: %d G\n", PlayerInstance.GetGold());
+    printf(" ──────────────────────────────────────────────\n");
+
+    for (int i = 0; i < (int)ShopItems.size(); i++)
+    {
+        const InventorySlot& Slot = ShopItems[i];
+
+        if (i == SelectCount)
+            printf("☞ ");
+        else
+            printf("   ");
+
+        printf("[%s]  가격: %d G  (보유: %d)\n",
+            Slot.Item->GetName().c_str(),
+            Slot.Item->GetPrice(),
+            Slot.Count);
+    }
+
+    printf(" ──────────────────────────────────────────────\n");
+    printf(" ↑↓ : 이동, Z : 구매, X : 나가기\n");
+    printf(" ==============================================\n");
 }

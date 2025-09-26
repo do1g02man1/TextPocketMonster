@@ -5,13 +5,19 @@
 #include "Map.h"
 #include <string>
 
+struct InventorySlot {
+    std::shared_ptr<IItem> Item;
+    int Count;
+};
+
 enum Tile
 {
     Wall = '#',
     Path = '.',
     Grass = 'M',
     River = '~',
-    Start = 'O'
+    Start = 'O',
+    NpcShop = '$'
 };
 
 enum MoveDirection
@@ -39,17 +45,17 @@ public:
     void AddPokemon(const Pokemon& PokemonToAdd);
     const Pokemon* GetTeam() const { return Team; }
     //int GetTeamCount() const { return TeamCount; }
-    Pokemon GetPokemon(int Index) { return Team[Index]; }
+    Pokemon& GetPokemon(int Index) { return Team[Index]; }
     void ShowTeam() const;
 
     // 아이템 관련
-    void AddItem(std::shared_ptr<IItem> Item);
+    void AddItem(std::shared_ptr<IItem> NewItem, int Amount = 1);
     void UseItem(int Index, Pokemon& Target);
         
     // 재화 관련
-    void AddGold(int Amount);
-    bool SpendGold(int Amount);
-    int GetGold() const;
+    void AddGold(int InGold) { Gold += InGold; }
+    bool SpendGold(int InGold);
+    int GetGold() const { return Gold; }
 
     // 이동 관련
     bool Move(MoveDirection InDirection, const Map& MapData);
@@ -57,24 +63,24 @@ public:
     MoveDirection GetMoveInput(int InMoveFlags, char InUserInput);          // 방향키 입력
     bool IsBlocked(int x, int y, const Map& MapData);                       // 벽인지 체크
     bool IsGrass(int x, int y, const Map& MapData);
+    bool IsShopNearby(const Position& InPosition, const Map& MapData) const;
     void FindStartPosition(Position& OutPosition, const Map& MapData);      // 시작 지점 체크 
 
     // Getter 
-    std::string GetPlayerName() const { return PlayerName; }
+    std::string GetName() const { return Name; }
     std::string GetStartPokemonName() const { return Team[0].GetName(); }
     Position& GetCurrentPosition() { return CurrentPosition; }
 
     // Setter
-    void SetPlayerName(const std::string& InPlayerName) { PlayerName = InPlayerName; }
+    void SetPlayerName(const std::string& InName) { Name = InName; }
 
+    std::vector<InventorySlot> Inventory;
 private:
     Position CurrentPosition = Position(0, 0);
-    std::string PlayerName;
-    int Gold;
+    std::string Name;
+    int Gold = 1000;
     static const int MaxTeam = 6;
-    static const int MaxInventory = 20;
     Pokemon Team[MaxTeam];
     int TeamCount = 0;
-    std::shared_ptr<IItem> Inventory[MaxInventory];
     int InventoryCount = 0;
 };

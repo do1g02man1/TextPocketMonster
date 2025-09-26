@@ -1,16 +1,20 @@
 #pragma once
-#include "IItem.h"
+#include "Potion.h"
+#include "Player.h"
 #include <memory>
 
 class Shop {
-private:
-    static const int MAX_ITEMS = 10;
-    std::shared_ptr<IItem> items[MAX_ITEMS];
-    int itemCount;
-
 public:
-    Shop();
-    void ShowItems() const;
-    void BuyItem(int index);
-    void SellItem(int index);
+    Shop() {
+        InventorySlot Slot;
+        Slot.Item = std::make_shared<Potion>();
+        Slot.Count = 1;
+        ItemsForSale.push_back(Slot);
+    }
+
+    const std::vector<InventorySlot>& GetItems() const { return ItemsForSale; }
+    void BuyItem(Player& player, int index);
+
+private:
+    std::vector<InventorySlot> ItemsForSale;
 };

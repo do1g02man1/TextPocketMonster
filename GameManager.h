@@ -1,8 +1,10 @@
 #pragma once
+#include "Shop.h"
 #include "PrintScreen.h"
 #include "Player.h"
 #include "Map.h"
 #include "WildBattle.h"
+#include "Pokemon.h"
 #include <string>
 
 enum Floor
@@ -33,10 +35,10 @@ public:
     void Select();  // 선택 체크
     int StartPokemonSelect(); // 스타팅 포켓몬 선택 
 
-    void Battle();
+    void OpenShop();
     
-
 private:
+    Shop ShopInstance;
     Player PlayerInstance;
     PrintScreen ScreenInstance;
     Map MapData;

@@ -62,7 +62,7 @@
     <ClCompile Include="Pokeball.cpp">
       <Filter>아이템</Filter>
     </ClCompile>
-    <ClCompile Include="Postion.cpp">
+    <ClCompile Include="Potion.cpp">
       <Filter>아이템</Filter>
     </ClCompile>
     <ClCompile Include="Shop.cpp">
@@ -74,6 +74,9 @@
     <ClCompile Include="Skill.cpp">
       <Filter>포켓몬</Filter>
     </ClCompile>
+    <ClCompile Include="Battle.cpp">
+      <Filter>전투</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PrintScreen.h">
@@ -82,13 +85,7 @@
     <ClInclude Include="GameManager.h">
       <Filter>게임매니저</Filter>
     </ClInclude>
-    <ClInclude Include="IScreen.h">
-      <Filter>인터페이스</Filter>
-    </ClInclude>
     <ClInclude Include="ISkill.h">
-      <Filter>인터페이스</Filter>
-    </ClInclude>
-    <ClInclude Include="IBattle.h">
       <Filter>인터페이스</Filter>
     </ClInclude>
     <ClInclude Include="ICapture.h">
@@ -115,7 +112,7 @@
     <ClInclude Include="Pokeball.h">
       <Filter>아이템</Filter>
     </ClInclude>
-    <ClInclude Include="Postion.h">
+    <ClInclude Include="Potion.h">
       <Filter>아이템</Filter>
     </ClInclude>
     <ClInclude Include="Shop.h">
@@ -129,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="Skill.h">
       <Filter>포켓몬</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle.h">
+      <Filter>전투</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

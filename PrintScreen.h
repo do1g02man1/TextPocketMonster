@@ -35,6 +35,10 @@ public:
     void ShowBattleStatus(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon, std::string InStatus) const;
     void ShowBattleScreen(int Index) const;
     void ShowBattleScreenAttack(const Pokemon& PlayerPokemon, const Pokemon& EnemyPokemon, int Index) const;
+    void ShowInventoryUI(const std::vector<InventorySlot>& Inventory, int Index) const;
+    
+    // 상점 출력
+    void ShowShopScreen(const Player& player, const std::vector<InventorySlot>& shopItems, int selectedIndex) const;
 
     // 엔딩 출력
     void ShowEnding();

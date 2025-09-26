@@ -1,9 +1,9 @@
 #pragma once
-#include "IBattle.h"
+#include "Battle.h"
 
-class BossBattle : public IBattle
+class BossBattle : public Battle
 {
 public:
-	void StartBattle(Pokemon& player, Pokemon& boss) override;
+	void StartBattle(Pokemon& player, Pokemon& boss);
 };
 

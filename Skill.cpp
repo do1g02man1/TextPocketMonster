@@ -2,27 +2,27 @@
 
 std::vector<SkillData> AllSkillsData = {
     // Normal 타입
-    {"Tackle", 40, 100, PokemonType::Normal},
-    {"Quick Attack", 40, 100, PokemonType::Normal},
-    {"Body Slam", 85, 100, PokemonType::Normal},
+    {"몸통박치기", 40, 90, PokemonType::Normal},
+    {"전광석화", 40, 85, PokemonType::Normal},
+    {"누르기", 85, 75, PokemonType::Normal},
 
     // Fire 타입
-    {"Ember", 40, 100, PokemonType::Fire},
-    {"Flamethrower", 90, 100, PokemonType::Fire},
-    {"Fire Blast", 110, 85, PokemonType::Fire},
+    {"불꽃세례", 40, 90, PokemonType::Fire},
+    {"화염방사", 90, 75, PokemonType::Fire},
+    {"불대문자", 110, 70, PokemonType::Fire},
 
     // Water 타입
-    {"Water Gun", 40, 100, PokemonType::Water},
-    {"Surf", 90, 100, PokemonType::Water},
-    {"Hydro Pump", 110, 80, PokemonType::Water},
+    {"물대포", 40, 90, PokemonType::Water},
+    {"파도타기", 90, 75, PokemonType::Water},
+    {"하이드로 펌프", 110, 70, PokemonType::Water},
 
     // Grass 타입
-    {"Vine Whip", 45, 100, PokemonType::Grass},
-    {"Razor Leaf", 55, 95, PokemonType::Grass},
-    {"Giga Drain", 75, 100, PokemonType::Grass},
+    {"덩굴채찍", 45, 90, PokemonType::Grass},
+    {"잎날가르기", 55, 85, PokemonType::Grass},
+    {"기가드레인", 75, 80, PokemonType::Grass},
 
     // Electric 타입
-    {"Thunder Shock", 40, 100, PokemonType::Electric},
-    {"Thunderbolt", 90, 100, PokemonType::Electric},
-    {"Thunder", 110, 70, PokemonType::Electric}
+    {"전기쇼크", 40, 90, PokemonType::Electric},
+    {"썬더볼트", 90, 75, PokemonType::Electric},
+    {"번개", 110, 70, PokemonType::Electric}
 };

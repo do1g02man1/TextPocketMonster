@@ -21,7 +21,7 @@ private:
     static const int Height = 20;
     char Tile[Height][Width] = {
     "###################",
-    "#...........MMMM..#",
+    "#...........MMMM.$#",
     "#..MMM........MM..#",
     "#..MMM............#",
     "#~~~~~............#",

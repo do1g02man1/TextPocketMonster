@@ -1,5 +1,5 @@
 #pragma once
-#include "IBattle.h"
+#include "Battle.h"
 #include "Pokemon.h"
 #include "PrintScreen.h"
 
@@ -11,12 +11,14 @@ enum BattleMenu
 	Run
 };
 
-class WildBattle : public IBattle
+class WildBattle : public Battle
 {
 public:
 	// 전투 컨트롤러
-	void StartBattle(Pokemon& PlayerPokemon, Pokemon& EnemyPokemon) override;
-	void BattleAttack(Pokemon& PlayerPokemon, Pokemon& EnemyPokemon);
+	void StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon);
+	void PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon);
+	void EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon);
+	std::string SelectItem(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon);
 	
 private:
 	PrintScreen ScreenInstance;
