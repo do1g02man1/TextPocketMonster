@@ -7,33 +7,6 @@ bool IsFastBoss = true;
 
 void WildBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon)
 {
-// 3. 전투 루프 시작
-// - 플레이어와 적이 번갈아가면서 행동
-// - 루프 종료 조건: 한쪽 포켓몬의 HP 0 이하
-
-// 4. 플레이어 행동 입력 처리
-// - 공격 선택 시 기술 리스트 출력
-// - 기술 사용 시 데미지 계산 및 적 HP 감소
-// - 아이템 선택 시 효과 적용
-// - 도망 선택 시 전투 종료 시도
-
-// 5. 적 행동 처리
-// - AI 로직에 따라 기술 선택
-// - 플레이어 포켓몬 HP 감소
-
-// 6. 전투 상태 갱신
-// - HP바 갱신
-// - 화면 재출력
-// - 전투 메시지 출력 (예: "피카츄의 10 데미지!")
-
-// 7. 전투 종료 체크
-// - 플레이어 포켓몬이 전멸 시 패배 처리
-// - 적 포켓몬이 전멸 시 승리 처리
-// - 경험치 부여, 레벨업, 포켓몬 상태 초기화 등
-
-// 8. 전투 종료 후 UI 정리
-// - 화면 초기화
-// - 이전 맵/게임 화면으로 복귀
     int SelectCount = 0;
     char UserInput;
     int GoldReward = 0;
@@ -44,15 +17,7 @@ void WildBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pok
         IsFastBoss = true;
     else 
         IsFastBoss = false;
-    
-    // 1. 화면 초기화
-    // - 이전 UI 지우고 전투용 UI 준비
 
-    // 2. 전투 UI 출력
-    // - 플레이어 포켓몬 정보: 이름, 레벨, HP
-    // - 상대 포켓몬 정보: 이름, 레벨, HP
-    // - HP는 현재 HP 비율에 따라 체력바 표시
-    // - 선택 가능한 행동 버튼 표시 (공격, 아이템, 도망 등)
     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "앗! 야생의 " + EnemyPokemon.GetName() + "(이)가 나타났다!");
     ScreenInstance.ShowBattleScreen(SelectCount);
     Sleep(1000);
@@ -66,7 +31,7 @@ void WildBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pok
             if (_kbhit())
             {
                 UserInput = _getch();
-                if (UserInput == -32)     // 2바이트 특수 문자로 입력되면
+                if (UserInput == -32)   
                     UserInput = _getch();
 
                 switch (UserInput)
@@ -141,7 +106,7 @@ void WildBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
         if (_kbhit())
         {
             UserInput = _getch();
-            if (UserInput == -32)     // 2바이트 특수 문자로 입력되면
+            if (UserInput == -32)   
                 UserInput = _getch();
 
             switch (UserInput)
@@ -160,13 +125,11 @@ void WildBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
                 auto Skill = PlayerPokemon.GetSkill(SelectCount);
                 if (Skill != nullptr)
                 {
-                    // 간단한 데미지 계산 (공격력 + 스킬 위력)
                     int Damage = CalculateDamage(PlayerPokemon, EnemyPokemon, *Skill);
 
                     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "의 " + Skill->GetName() + " 공격!");
                     ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
 					Sleep(1000);
-                    // 정확도 체크 (랜덤으로 명중 여부 판단)
                     int RandValue = rand() % 100;
                     if (RandValue < Skill->GetAccuracy())   // 명중
                     {   
@@ -187,7 +150,6 @@ void WildBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
                     Sleep(1000);
                 }
             
-                // 적 포켓몬이 쓰러졌는지 체크
                 if (EnemyPokemon.IsFainted())
                 {
                     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, EnemyPokemon.GetName() + "(은)는 쓰러졌다!");
@@ -227,7 +189,6 @@ void WildBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
 
 void WildBattle::EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon)
 {
-    // 1. 적이 사용할 스킬을 랜덤 선택
     int EnemySkillIndex = rand() % EnemyPokemon.GetSkillCount();
     auto EnemySkill = EnemyPokemon.GetSkill(EnemySkillIndex);
 
@@ -236,15 +197,12 @@ void WildBattle::EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemo
         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "상대 " + EnemyPokemon.GetName() + "(이)가 " + EnemySkill->GetName() + "을(를) 사용했다!");
         Sleep(1000);
 
-        // 2. 명중 체크
         int RandValue = rand() % 100;
         if (RandValue < EnemySkill->GetAccuracy())
         {
-            // 3. 데미지 계산 (CalculateDamage 재사용)
             int Damage = CalculateDamage(EnemyPokemon, PlayerPokemon, *EnemySkill);
             PlayerPokemon.TakeDamage(Damage);
 
-            // 4. 효과 메시지 출력
             double Effectiveness = GetTypeEffectiveness(EnemySkill->GetType(), PlayerPokemon.GetType());
             std::string EffectMsg;
             if (Effectiveness > 1.0) EffectMsg = "효과가 굉장했다!";
@@ -257,7 +215,6 @@ void WildBattle::EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemo
         }
         else
         {
-            // 빗나감 처리
             ScreenInstance.ShowBattleStatus(
                 PlayerPokemon, EnemyPokemon,
                 "상대 " + EnemyPokemon.GetName() + "의 " + EnemySkill->GetName() + "(은)는 빗나갔다!"
@@ -266,7 +223,6 @@ void WildBattle::EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemo
         Sleep(1000);
     }
 
-    // 5. 플레이어 쓰러짐 체크
     if (PlayerPokemon.IsFainted())
     {
         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 쓰러졌다!");
@@ -298,7 +254,7 @@ std::string WildBattle::SelectItem(Player& PlayerInstance, Pokemon& PlayerPokemo
             ScreenInstance.ShowInventoryUI(PlayerInstance.Inventory, SelectCount);
 
             UserInput = _getch();
-            if (UserInput == -32)     // 2바이트 특수 문자로 입력되면
+            if (UserInput == -32) 
                 UserInput = _getch();
 
             switch (UserInput)

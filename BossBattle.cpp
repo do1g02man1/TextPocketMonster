@@ -31,7 +31,7 @@ void BossBattle::StartBattle(Player& PlayerInstance, Pokemon& PlayerPokemon, Pok
             if (_kbhit())
             {
                 UserInput = _getch();
-                if (UserInput == -32)     // 2바이트 특수 문자로 입력되면
+                if (UserInput == -32)
                     UserInput = _getch();
 
                 switch (UserInput)
@@ -96,7 +96,7 @@ void BossBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
         if (_kbhit())
         {
             UserInput = _getch();
-            if (UserInput == -32)     // 2바이트 특수 문자로 입력되면
+            if (UserInput == -32) 
                 UserInput = _getch();
 
             switch (UserInput)
@@ -115,13 +115,11 @@ void BossBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
                 auto Skill = PlayerPokemon.GetSkill(SelectCount);
                 if (Skill != nullptr)
                 {
-                    // 간단한 데미지 계산 (공격력 + 스킬 위력)
                     int Damage = CalculateDamage(PlayerPokemon, EnemyPokemon, *Skill);
 
                     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "의 " + Skill->GetName() + " 공격!");
                     ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
                     Sleep(2000);
-                    // 정확도 체크 (랜덤으로 명중 여부 판단)
                     int RandValue = rand() % 100;
                     if (RandValue < Skill->GetAccuracy())   // 명중
                     {
@@ -134,15 +132,13 @@ void BossBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
                         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, EnemyPokemon.GetName() + "에게 " + std::to_string(Damage) + "의 데미지를 입혔다! " + EffectMsg);
                         ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
                     }
-                    else  // 빗나감
+                    else
                     {
                         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "그러나 " + PlayerPokemon.GetName() + "의 " + Skill->GetName() + "는 빗나갔다!");
                         ScreenInstance.ShowBattleScreenAttack(PlayerPokemon, EnemyPokemon, SelectCount);
                     }
                     Sleep(2000);
                 }
-
-                // 적 포켓몬이 쓰러졌는지 체크
                 if (EnemyPokemon.IsFainted())
                 {
                     ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, EnemyPokemon.GetName() + "(은)는 쓰러졌다!");
@@ -183,7 +179,6 @@ void BossBattle::PlayerBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokem
 
 void BossBattle::EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemon, Pokemon& EnemyPokemon)
 {
-    // 1. 적이 사용할 스킬을 랜덤 선택
     int EnemySkillIndex = rand() % EnemyPokemon.GetSkillCount();
     auto EnemySkill = EnemyPokemon.GetSkill(EnemySkillIndex);
 
@@ -192,15 +187,12 @@ void BossBattle::EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemo
         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, "상대 " + EnemyPokemon.GetName() + "(이)가 " + EnemySkill->GetName() + "을(를) 사용했다!");
         Sleep(2000);
 
-        // 2. 명중 체크
         int RandValue = rand() % 100;
         if (RandValue < EnemySkill->GetAccuracy())
         {
-            // 3. 데미지 계산 (CalculateDamage 재사용)
             int Damage = CalculateDamage(EnemyPokemon, PlayerPokemon, *EnemySkill);
             PlayerPokemon.TakeDamage(Damage);
 
-            // 4. 효과 메시지 출력
             double Effectiveness = GetTypeEffectiveness(EnemySkill->GetType(), PlayerPokemon.GetType());
             std::string EffectMsg;
             if (Effectiveness > 1.0) EffectMsg = "효과가 굉장했다!";
@@ -219,7 +211,6 @@ void BossBattle::EnemyBattleAttack(Player& PlayerInstance, Pokemon& PlayerPokemo
         Sleep(2000);
     }
 
-    // 5. 플레이어 쓰러짐 체크
     if (PlayerPokemon.IsFainted())
     {
         ScreenInstance.ShowBattleStatus(PlayerPokemon, EnemyPokemon, PlayerPokemon.GetName() + "(은)는 쓰러졌다!");
@@ -251,7 +242,7 @@ std::string BossBattle::SelectItem(Player& PlayerInstance, Pokemon& PlayerPokemo
             ScreenInstance.ShowInventoryUI(PlayerInstance.Inventory, SelectCount);
 
             UserInput = _getch();
-            if (UserInput == -32)     // 2바이트 특수 문자로 입력되면
+            if (UserInput == -32) 
                 UserInput = _getch();
 
             switch (UserInput)

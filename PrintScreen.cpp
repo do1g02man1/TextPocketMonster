@@ -42,7 +42,6 @@ void PrintScreen::ShowLogoBottom() const
 
 void PrintScreen::ShowPlayerName() const
 {
-    //system("mode con: cols=120 lines=40");
     ClearScreen();
     
     std::string ScriptDoctor = "[???] : ……오, 드디어 왔구나!\n\n(하얀 가운을 입은 노인이 천천히 다가온다.)\n\n[오박사] : 처음 보는 얼굴이군.\n나는 이 세계의 포켓몬을 연구하는 오박사라네.\n\n"
@@ -66,7 +65,7 @@ void PrintScreen::ShowScriptSleep(std::string ScriptDoctor, int ScriptLen) const
     for (int i = 0; i < ScriptLen; i++)
     {
         printf("%c", ScriptDoctor[i]);
-        //Sleep(10);
+        Sleep(10);
     }
 }
 

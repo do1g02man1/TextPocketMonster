@@ -73,7 +73,7 @@ int Battle::CalculateWildPokemonGold(const Pokemon& EnemyPokemon)
 
 int Battle::CalculateExperience(const Pokemon& EnemyPokemon)
 {
-    int BaseExp = 20; // 포켓몬 데이터에 저장
+    int BaseExp = 20;
     int Level = EnemyPokemon.GetLevel();
 
     // 0.85 ~ 1.0 난수 생성

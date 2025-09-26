@@ -196,16 +196,16 @@ void GameManager::OpenShop()
         if (_kbhit())
         {
             UserInput = _getch();
-            if (UserInput == -32)     // 방향키 입력은 2바이트라서 한번 더 읽음
+            if (UserInput == -32)
                 UserInput = _getch();
 
             switch (UserInput)
             {
-            case ArrowUp:   // 위로
+            case ArrowUp: 
                 if (SelectCount > 0) SelectCount--;
                 break;
 
-            case ArrowDown: // 아래로
+            case ArrowDown:
                 if (SelectCount < (int)PlayerInstance.Inventory.size() - 1) SelectCount++;
                 break;
 
